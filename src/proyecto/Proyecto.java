@@ -7,7 +7,7 @@ package proyecto;
 
 /**
  *
- * 
+ *
  */
 public class Proyecto {
 
@@ -16,6 +16,11 @@ public class Proyecto {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Curso cursos = new Curso();
+        cursos.setCodigo("1M-A");
+        cursos.setPorceAprobacion(1);
+        System.out.println(cursos.getCodigo());
+
     }
-    
+
 }

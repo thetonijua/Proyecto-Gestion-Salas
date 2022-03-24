@@ -10,10 +10,11 @@ package proyecto;
  * @author Estudiante
  */
 public class Curso {
-private String codigo;
-private Dia[][] año=new Dia[12][31];
-private int totAlumn;
-private float porceAprobacion;
+
+    private String codigo;//codigo del curso por ejemplo 1-A 1-B etc..
+    private Dia[][] año = new Dia[12][31];
+    private int totAlumn;
+    private float porceAprobacion;
 
     public String getCodigo() {
         return codigo;
@@ -36,7 +37,9 @@ private float porceAprobacion;
     }
 
     public void setTotAlumn(int totAlumn) {
-        this.totAlumn = totAlumn;
+        if (totAlumn > 0) {
+            this.totAlumn = totAlumn;
+        }
     }
 
     public float getPorceAprobacion() {
@@ -44,7 +47,9 @@ private float porceAprobacion;
     }
 
     public void setPorceAprobacion(float porceAprobacion) {
-        this.porceAprobacion = porceAprobacion;
+        if (porceAprobacion > 0 && porceAprobacion < 1) {
+            this.porceAprobacion = porceAprobacion;
+        }
     }
 
 }
