@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyecto;
+ package proyecto;
 
 /**
  *
@@ -11,45 +11,72 @@ package proyecto;
  */
 public class Dia {
 
-    private boolean diaContable;
-    private String numDia;
-    private Alumno[] alumnos;
-    private int totDiasCont = 0;
+    private int dia;
+    private int mes;
+    private int año;
+    boolean asistencia;
 
-    public boolean isDiaContable() {
-        return diaContable;
+    public Dia() {
+
     }
 
-    public void setDiaContable(boolean diaContable) {
-        this.diaContable = diaContable;
-        if (diaContable) {
-            totDiasCont++;
+    public Dia(int dd, int mm, int aa, boolean siNo) {
+        dia = dd;
+        mes = mm;
+        año = aa;
+        asistencia = siNo;
+
+    }
+
+    public Dia(String fecha, String siNo) {
+        String[] aux = fecha.split("-");
+        dia = Integer.parseInt(aux[0]);
+        mes = Integer.parseInt(aux[1]);
+        año = Integer.parseInt(aux[2]);
+        if ("si".equals(siNo)) {
+            asistencia = true;
+        } else {
+            asistencia = false;
         }
     }
 
-    public String getNumDia() {
-        return numDia;
+    public int getDia() {
+        return dia;
     }
 
-    public void setNumDia(String numDia) {
-        this.numDia = numDia;
+    public void setDia(int dia) {
+        this.dia = dia;
     }
 
-    public Alumno[] getAlumnos() {
-        return alumnos;
+    public int getMes() {
+        return mes;
     }
 
-    public void setAlumnos(Alumno[] alumnos) {
-        this.alumnos = alumnos;
+    public void setMes(int mes) {
+        this.mes = mes;
     }
 
-    /*public int getTotDiasCont() {
-        return totDiasCont;
+    public int getAño() {
+        return año;
     }
 
-   /*  public void setTotDiasCont(int totDiasCont) {
-        this.totDiasCont = totDiasCont;
+    public void setAño(int año) {
+        this.año = año;
     }
-    No creo que sea necesario Cesar
-     */
+
+    public boolean isAsistencia() {
+        return asistencia;
+    }
+
+    public void setAsistencia(boolean asistencia) {
+        this.asistencia = asistencia;
+    }
+public String getAsistencia(){
+    if(asistencia)return "presente";
+    else return "ausente";
+}    
+public void printDia(){
+    
+    System.out.println(dia+"-"+mes+"-"+año+" "+this.getAsistencia());
+}
 }

@@ -5,41 +5,64 @@
  */
 package proyecto;
 
+import java.io.*;
+import java.util.*;
+
 /**
  *
- *
+ * @author BruceLee
  */
 public class Proyecto {
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-        // TODO code application logic here
-        Curso cursos = new Curso();
-        cursos.setCodigo("1M-A");
-        float porce = (float) 0.6;//no se porque me reconoce el 0.6 como double ayuda
-        cursos.setPorceAprobacion(porce);
-        cursos.setTotAlumn(1);
-        //preparando cursos.setAño
-        Dia[][] año = new Dia[12][31];
-        año[0][0] = new Dia();
-        año[0][0].setDiaContable(true);
-        año[0][0].setNumDia("01-01-2022");
-        //prepareando año[0][0].setAlumnos(alumnos)
-        Alumno[] alumnos = new Alumno[1];
-        alumnos[0] = new Alumno();
-        alumnos[0].setAsistenciaTot(true, año[0][0].getNumDia());
-        alumnos[0].setId(1);
-        alumnos[0].setNombre("Cesar");
+    public static void main(String[] args) throws FileNotFoundException, IOException {
 
-        año[0][0].setAlumnos(alumnos);
-        cursos.setAño(año);
+        CSV file;
+        file = new CSV("prueba");
 
-        System.out.println(cursos.getCodigo() + " Asistencia minima " + 100*cursos.getPorceAprobacion() + "% Total alumnos: " + cursos.getTotAlumn());
-        System.out.println("Curso:");
-        System.out.println(alumnos[0].getId()+" "+alumnos[0].getNombre()+" Asistencia total "+alumnos[0].getAsistenciaTot()+" Fecha: "+alumnos[0].getFechaAsis()[0]);
-        
+        Map<String, Curso> colegio;
+        Map<String, Integer> cursoXId;
+        Map<String, Integer> alumnoXId;
+        colegio = new HashMap<>();
+        cursoXId = new HashMap<>();
+        alumnoXId = new HashMap<>();
+
+        String lectura = file.firstLine();
+
+        String[] separado;
+        int start, largo;
+        start = 0;
+
+        do {
+            separado = lectura.split(";");
+
+            largo = separado.length;
+
+            Curso cursoAux;
+            cursoAux = new Curso(separado[0]);
+            cursoAux.setPorceAprobacion(Float.parseFloat(separado[2]));
+            cursoAux.setCodigo(Integer.parseInt(separado[1]));
+            cursoXId.putIfAbsent(separado[0], cursoAux.getCodigo());
+            for (int i = 3; i < largo; i++) {
+                cursoAux.putAlumno(separado[i], "30-03-2022", start);
+                alumnoXId.putIfAbsent(separado[i], start);
+                start++;
+
+            }
+
+            colegio.put(separado[0], cursoAux);
+            lectura = file.nextLine();
+
+        } while (lectura != null);
+        System.out.println(colegio.keySet());
+        Curso aux = colegio.get("A2");
+        aux.pasarLista();
+        int ayuda = alumnoXId.get("Alberto");
+        Alumno perkin = aux.getAlumno(ayuda);
+        System.out.println(perkin.getNombre() + " " + perkin.getTotAsistencia() + " ");
+        perkin.printAsistencia();
 
     }
 

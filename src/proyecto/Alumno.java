@@ -3,19 +3,35 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package proyecto;
-
+ package proyecto;
+import java.util.*;
 /**
  *
- * @author Estudiante
+ * @author BruceLee
  */
 public class Alumno {
 
     private String nombre;
     private int id;
-    private int asistenciaTot = 0;
-    private int posci = 0;
-    private String[] fechaAsis = new String[365];
+    private int totAsistencia;
+    private ArrayList <Dia> asistencia;
+
+    public Alumno() {
+        nombre = "No-Name";
+        id = 0;
+        totAsistencia = 0;
+       
+        asistencia=new ArrayList();
+    }
+
+    public Alumno(String name,  int ide) {
+        nombre = name;
+        id = ide;
+        totAsistencia = 0;
+        asistencia=new ArrayList();
+         
+        
+    }
 
     public String getNombre() {
         return nombre;
@@ -25,36 +41,48 @@ public class Alumno {
         this.nombre = nombre;
     }
 
+    public int getTotAsistencia() {
+        return totAsistencia;
+    }
+
+    public void setTotAsistencia(int totAsistencia) {
+        this.totAsistencia = totAsistencia;
+    }
+
+    public ArrayList getAsistencia() {
+        return asistencia;
+    }
+
+    public void setAsistencia(ArrayList asistencia) {
+        this.asistencia = asistencia;
+    }
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
-        if (id > 0) {
-            this.id = id;
-        }
+        this.id = id;
     }
 
-    public int getAsistenciaTot() {
-        return asistenciaTot;
+    public void asistencia(String fecha, String siNo) {
+        Dia aux=new Dia (fecha,siNo);
+        
+        asistencia.add(aux);
+
     }
 
-    public void setAsistenciaTot(boolean asistio, String fecha) {
-        if (asistio) {
-            asistenciaTot++;
-            setFechaAsis("Si asistio " + fecha);
-        } else {
-            setFechaAsis("No asistio " + fecha);
-        }
-    }
+    //ahora no es necesario pero lo necesitare despues
+    public void asistencia(int dia, int mes, int año, boolean siNo) {
+        Dia aux=new Dia (dia,mes,año,siNo);
+        asistencia.add(aux);
 
-    public String[] getFechaAsis() {
-        return this.fechaAsis;
     }
-
-    private void setFechaAsis(String fechaAsis) {
-        this.fechaAsis[posci] = fechaAsis;
-        posci++;
+    public void printAsistencia(){
+    for (int i=0;i<asistencia.size();i++){
+        Dia aux=asistencia.get(i);
+        aux.printDia();
     }
+}
 
 }
