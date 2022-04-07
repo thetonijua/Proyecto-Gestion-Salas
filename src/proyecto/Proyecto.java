@@ -46,7 +46,7 @@ public class Proyecto {
             cursoAux.setCodigo(Integer.parseInt(separado[1]));
             cursoXId.putIfAbsent(separado[0], cursoAux.getCodigo());
             for (int i = 3; i < largo; i++) {
-                cursoAux.putAlumno(separado[i], "30-03-2022", start);
+                cursoAux.putAlumno(separado[i], start);
                 alumnoXId.putIfAbsent(separado[i], start);
                 start++;
 

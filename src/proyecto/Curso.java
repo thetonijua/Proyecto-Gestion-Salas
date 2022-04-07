@@ -100,7 +100,7 @@ public class Curso {
         return estudiantes.get(num);
     }
 
-    public void putAlumno(String name, String fecha, int id) {
+    public void putAlumno(String name, int id) {
         Alumno aux = new Alumno(name, id);
 
         estudiantes.put(id, aux);
