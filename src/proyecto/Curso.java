@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
- package proyecto;
+package proyecto;
 
 import java.util.*;
 import java.io.*;
@@ -141,6 +141,19 @@ public class Curso {
             System.out.println("Esta presente " + aux.getNombre() + "? (si/no)");
             lectura = scan.readLine();
             aux.asistencia(fecha, lectura);
+        }
+    }
+
+    public void printLista() throws IOException {
+        int largo = listaEstu.size();
+        int cod;
+        String lectura;
+
+        Alumno aux;
+        for (int i = 0; i < largo; i++) {
+            cod = listaEstu.get(i);
+            aux = estudiantes.get(cod);
+            System.out.println(aux.getNombre());
         }
     }
 

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
- package proyecto;
+package proyecto;
 
 /**
  *
@@ -13,7 +13,7 @@ public class Dia {
 
     private int dia;
     private int mes;
-    private int año;
+    private int anio;
     boolean asistencia;
 
     public Dia() {
@@ -23,7 +23,7 @@ public class Dia {
     public Dia(int dd, int mm, int aa, boolean siNo) {
         dia = dd;
         mes = mm;
-        año = aa;
+        anio = aa;
         asistencia = siNo;
 
     }
@@ -32,7 +32,7 @@ public class Dia {
         String[] aux = fecha.split("-");
         dia = Integer.parseInt(aux[0]);
         mes = Integer.parseInt(aux[1]);
-        año = Integer.parseInt(aux[2]);
+        anio = Integer.parseInt(aux[2]);
         if ("si".equals(siNo)) {
             asistencia = true;
         } else {
@@ -56,12 +56,12 @@ public class Dia {
         this.mes = mes;
     }
 
-    public int getAño() {
-        return año;
+    public int getAnio() {
+        return anio;
     }
 
-    public void setAño(int año) {
-        this.año = año;
+    public void setAnio(int anio) {
+        this.anio = anio;
     }
 
     public boolean isAsistencia() {
@@ -77,6 +77,6 @@ public String getAsistencia(){
 }    
 public void printDia(){
     
-    System.out.println(dia+"-"+mes+"-"+año+" "+this.getAsistencia());
+    System.out.println(dia+"-"+mes+"-"+anio+" "+this.getAsistencia());
 }
 }

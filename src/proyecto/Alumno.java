@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
- package proyecto;
+package proyecto;
 import java.util.*;
 /**
  *
@@ -73,8 +73,8 @@ public class Alumno {
     }
 
     //ahora no es necesario pero lo necesitare despues
-    public void asistencia(int dia, int mes, int año, boolean siNo) {
-        Dia aux=new Dia (dia,mes,año,siNo);
+    public void asistencia(int dia, int mes, int anio, boolean siNo) {
+        Dia aux=new Dia (dia,mes,anio,siNo);
         asistencia.add(aux);
 
     }
