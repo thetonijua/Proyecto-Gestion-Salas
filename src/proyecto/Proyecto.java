@@ -19,9 +19,6 @@ public class Proyecto {
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
 
-        CSV file;
-        file = new CSV("prueba");
-
         Map<String, Curso> colegio;
         Map<String, Integer> cursoXId;
         Map<String, Integer> alumnoXId;
@@ -39,10 +36,13 @@ public class Proyecto {
             menu();
             selectMenu = Integer.parseInt(scan.readLine());
             cls();
-            String lectura = file.firstLine();
 
             switch (selectMenu) {
-                case 1: //Inportar CSV
+                case 1: //Importar CSV
+                    CSV file;
+                    System.out.println("Ingrese nombre de archivo CSV (ejemplo/sugerencia prueba)");
+                    file = new CSV(scan.readLine());
+                    String lectura = file.firstLine();
                     do {
                         separado = lectura.split(";");
 
@@ -114,13 +114,16 @@ public class Proyecto {
                     perkin = cursoAux.getAlumno(alumnoXId.get(scan.readLine()));
                     perkin.printAsistencia();
                     break;
-                default:
-                    selectMenu=0;
+                case 7:
+                    System.out.println("Ingrese curso:");
+                    colegio.get(scan.readLine()).pasarLista();
                     break;
-                    
+                default:
+                    selectMenu = 0;
+                    break;
+
             }
         } while (selectMenu != 0);
-        
 
     }
 
@@ -132,14 +135,15 @@ public class Proyecto {
         System.out.println("4.- Mostrar listado de cursos");
         System.out.println("5.- Mostrar listado de alumnos");
         System.out.println("6.- Mostrar listado de dias");
+        System.out.println("7.- Pasar lista");
         System.out.println("0.- Salir");
-        
+
     }
-    
-    private static void cls(){
-      for (int i=0;i<10;i++){
-          System.out.println("");
-      }  
+
+    private static void cls() {
+        for (int i = 0; i < 20; i++) {
+            System.out.println("");
+        }
     }
 
 }
