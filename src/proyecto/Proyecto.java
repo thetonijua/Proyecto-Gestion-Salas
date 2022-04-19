@@ -43,6 +43,7 @@ public class Proyecto {
                     System.out.println("Ingrese nombre de archivo CSV (ejemplo/sugerencia prueba)");
                     file = new CSV(scan.readLine());
                     String lectura = file.firstLine();
+                    lectura = file.nextLine();
                     do {
                         separado = lectura.split(";");
 
