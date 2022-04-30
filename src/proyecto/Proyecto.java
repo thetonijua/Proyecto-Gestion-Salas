@@ -18,7 +18,7 @@ public class Proyecto {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        Menu m= new Menu();
+        Menu m = new Menu();
         m.configVentana();
         Map<String, Curso> colegio;
         Map<String, Integer> cursoXId;
@@ -114,12 +114,38 @@ public class Proyecto {
                     Alumno perkin;
                     System.out.println("Ingrese el nombre del alumno:");
                     perkin = cursoAux.getAlumno(alumnoXId.get(scan.readLine()));
-                    perkin.printAsistencia();
+                    //perkin.printAsistencia();
                     break;
                 case 7:
                     System.out.println("Ingrese curso:");
                     colegio.get(scan.readLine()).pasarLista();
                     break;
+                case 8:
+                    System.out.println("Ingrese curso");
+                    cursoAux = colegio.get(scan.readLine());
+                    cursoAux.printSetKey();
+                    System.out.println("Ingrese ingrese nombre/id alumno a  eliminar");
+                    lectura=scan.readLine();
+                    if(esNumero(lectura))
+                    cursoAux.eliminarAlumno(Integer.parseInt(lectura));
+                    cursoAux.eliminarAlumno(lectura);
+                    cursoAux.printSetKey();
+                    break;
+                case 9:
+                    System.out.println("Ingrese curso");
+                    cursoAux = colegio.get(scan.readLine());
+                    System.out.println("Ingrese ingrese Alumno");
+                    lectura=scan.readLine();
+                    if(esNumero(lectura))
+                    perkin=cursoAux.getAlumno(Integer.parseInt(lectura));
+                    perkin=cursoAux.getAlumno(lectura);
+                    cursoAux.printLista();
+                    perkin.printAsistencia();
+                    System.out.println("Ingrese ingrese dia a eliminar (dd-mm-aa):");
+                    perkin.eliminarDia(scan.readLine());
+                    perkin.printAsistencia();
+                    break;
+
                 default:
                     selectMenu = 0;
                     break;
@@ -128,6 +154,16 @@ public class Proyecto {
         } while (selectMenu != 0);
 
     }
+
+    
+
+    
+
+    
+
+    
+
+    
 
     private static void menu() {
 
@@ -138,6 +174,7 @@ public class Proyecto {
         System.out.println("5.- Mostrar listado de alumnos");
         System.out.println("6.- Mostrar listado de dias");
         System.out.println("7.- Pasar lista");
+        System.out.println("8.- Eliminar alumno");
         System.out.println("0.- Salir");
 
     }
@@ -145,6 +182,15 @@ public class Proyecto {
     private static void cls() {
         for (int i = 0; i < 20; i++) {
             System.out.println("");
+        }
+    }
+
+    public static boolean esNumero(String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
         }
     }
 

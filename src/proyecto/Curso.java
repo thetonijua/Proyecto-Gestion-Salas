@@ -13,22 +13,22 @@ import java.io.*;
  * @author BruceLee
  */
 public class Curso {
-    
+
     //variables de instancia
-    
     private String nombre;
     private int codigo;
     private float porceAprobacion;
     private Map<Integer, Alumno> estudiantes;
+    private Map<String, Integer> nombreXId;
     private List<Integer> listaEstu;
     BufferedReader scan = new BufferedReader(new InputStreamReader(System.in)); //usado para leer la lista
 
     //constructores
-    
     public Curso(String name, float numero, int cod) {
         nombre = name;
         porceAprobacion = numero;
         estudiantes = new HashMap();
+        nombreXId = new HashMap();
         codigo = cod;
         listaEstu = new ArrayList();
     }
@@ -37,6 +37,7 @@ public class Curso {
         nombre = "Por asignar";
         porceAprobacion = (float) 0;
         estudiantes = new HashMap();
+        nombreXId = new HashMap();
         listaEstu = new ArrayList();
 
     }
@@ -45,11 +46,11 @@ public class Curso {
         nombre = name;
         porceAprobacion = (float) 0;
         estudiantes = new HashMap();
+        nombreXId = new HashMap();
         listaEstu = new ArrayList();
     }
-    
-    //setters y getters de las variables
 
+    //setters y getters de las variables
     public String getNombre() {
         return nombre;
     }
@@ -57,7 +58,7 @@ public class Curso {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
+
     public int getCodigo() {
         return codigo;
     }
@@ -69,9 +70,8 @@ public class Curso {
     public float getPorceAprobacion() {
         return porceAprobacion;
     }
-    
-    //dos setters para porceAprobacion por si el argumento es int o float
 
+    //dos setters para porceAprobacion por si el argumento es int o float
     public void setPorceAprobacion(int porceAprobacion) {
         this.porceAprobacion = porceAprobacion;
     }
@@ -81,7 +81,6 @@ public class Curso {
     }
 
     //tres getters para alumno por si el argumento es Integer, float o String
-    
     public Alumno getAlumno(Integer id) {
 
         if (!estudiantes.containsKey(id)) {
@@ -105,11 +104,7 @@ public class Curso {
     }
 
     public Alumno getAlumno(String txt) {
-        int num;
-        float id = Float.parseFloat(txt);
-        float aux = id % 1;
-        aux = id - aux;
-        num = (int) aux;
+        int num = nombreXId.get(txt);
 
         if (!estudiantes.containsKey(num)) {
             System.out.println("No se encontro ");
@@ -117,36 +112,32 @@ public class Curso {
         }
         return estudiantes.get(num);
     }
-    
+
     //métodos de la clase
-    
     /*dos metodos para añadir el alumno a la lista
     el primero es para una id de tipo int*/
-
     public void putAlumno(String name, int id) {
         Alumno aux = new Alumno(name, id);
-
+        nombreXId.put(name, id);
         estudiantes.put(id, aux);
         listaEstu.add(id);
     }
 
     //el segundo es para una id de tipo String
-    
     public void putAlumno(String name, String id) {
         int num = Integer.parseInt(id);
         Alumno aux = new Alumno(name, num);
         estudiantes.put(num, aux);
+        nombreXId.put(name, num);
         listaEstu.add(num);
     }
-    
+
     //imprime la key del estudiante en el mapa
-    
     public void printSetKey() {
         System.out.println(estudiantes.keySet());
     }
-    
-    //pasa la lista de asistencia, preguntando si el estudiante está presente o no
 
+    //pasa la lista de asistencia, preguntando si el estudiante está presente o no
     public void pasarLista() throws IOException {
         int largo = listaEstu.size();
         int cod;
@@ -164,9 +155,8 @@ public class Curso {
             aux.asistencia(fecha, lectura);
         }
     }
-    
-    //imprime toda la lista de estudnaiets
 
+    //imprime toda la lista de estudnaiets
     public void printLista() throws IOException {
         int largo = listaEstu.size();
         int cod;
@@ -180,4 +170,29 @@ public class Curso {
         }
     }
 
+    public void eliminarAlumno(int id) {
+        int i;
+        if (estudiantes.remove(id) != null) {
+            for (i = 0; i < listaEstu.size(); i++) {
+
+                if (id == listaEstu.get(i)) {
+                    listaEstu.remove(i);
+                }
+
+            }
+        }
+    }
+    public void eliminarAlumno(String name) {
+        int i,id;
+        id=nombreXId.get(name);
+        if (estudiantes.remove(id) != null) {
+            for (i = 0; i < listaEstu.size(); i++) {
+
+                if (id == listaEstu.get(i)) {
+                    listaEstu.remove(i);
+                }
+
+            }
+        }
+    }
 }

@@ -12,7 +12,6 @@ package proyecto;
 public class Dia {
 
     //variables de instancia
-    
     private int dia;
     private int mes;
     private int anio;
@@ -21,9 +20,7 @@ public class Dia {
     /*public Dia() {
 
     }*/
-    
     //constructores
-
     public Dia(int dd, int mm, int aa, boolean siNo) {
         dia = dd;
         mes = mm;
@@ -43,9 +40,8 @@ public class Dia {
             asistencia = false;
         }
     }
-    
-    //setters y getters de las variables
 
+    //setters y getters de las variables
     public int getDia() {
         return dia;
     }
@@ -73,25 +69,28 @@ public class Dia {
     public void setAsistencia(boolean asistencia) {
         this.asistencia = asistencia;
     }
-    
-    //getAsistencia retorna presente o ausente dependiendo del estudiante
-    
-    public String getAsistencia(){
-        if (asistencia) return "presente";
-        else return "ausente";
-    }
-    
-    //métodos de la clase
-    
-    //retorna la asistencia
 
+    //getAsistencia retorna presente o ausente dependiendo del estudiante
+    public String getAsistencia() {
+        if (asistencia) {
+            return "presente";
+        } else {
+            return "ausente";
+        }
+    }
+
+    //métodos de la clase
+    //retorna la asistencia
     public boolean isAsistencia() {
         return asistencia;
     }
-    
+    public String getFecha(){
+        
+        return (dia+"-"+mes+"-"+anio);
+    }
+
     //imprime el día en específico
-    
-    public void printDia(){
-        System.out.println(dia+"-"+mes+"-"+anio+" "+this.getAsistencia());
+    public void printDia() {
+        System.out.println(dia + "-" + mes + "-" + anio + " " + this.getAsistencia());
     }
 }
