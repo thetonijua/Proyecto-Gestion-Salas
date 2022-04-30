@@ -21,11 +21,9 @@ public class Proyecto {
         Menu m = new Menu();
         m.configVentana();
         Map<String, Curso> colegio;
-        Map<String, Integer> cursoXId;
-        Map<String, Integer> alumnoXId;
+
         colegio = new HashMap<>();
-        cursoXId = new HashMap<>();
-        alumnoXId = new HashMap<>();
+
         String[] separado;
         String xTeclado;
         int selectMenu;
@@ -54,10 +52,10 @@ public class Proyecto {
                         cursoAux = new Curso(separado[0]);
                         cursoAux.setPorceAprobacion(Float.parseFloat(separado[2]));
                         cursoAux.setCodigo(Integer.parseInt(separado[1]));
-                        cursoXId.putIfAbsent(separado[0], cursoAux.getCodigo());
+
                         for (int i = 3; i < largo; i++) {
                             cursoAux.putAlumno(separado[i], start);
-                            alumnoXId.putIfAbsent(separado[i], start);
+                  
                             start++;
 
                         }
@@ -73,15 +71,16 @@ public class Proyecto {
                     cursoAux = new Curso(scan.readLine());
                     System.out.println("Ingrese el porcentaje de aprobacion del curso(ej. 0.1):");
                     cursoAux.setPorceAprobacion(Float.parseFloat(scan.readLine()));
-                    System.out.println("Ingrese el codigo del curso");
+                    System.out.println("Ingrese el codigo del curso (ej: 14):");
                     cursoAux.setCodigo(Integer.parseInt(scan.readLine()));
-                    cursoXId.putIfAbsent(cursoAux.getNombre(), cursoAux.getCodigo());
+
                     System.out.println("Cuantos alumno tiene el curso:");
-                    for (int i = 0; i < Integer.parseInt(scan.readLine()); i++) {
+                    int fin=Integer.parseInt(scan.readLine());
+                    for (int i = 0; i < fin; i++) {
                         System.out.println("Nombre del alumno " + (i + 1) + ":");
                         xTeclado = scan.readLine();
                         cursoAux.putAlumno(xTeclado, start);
-                        alumnoXId.putIfAbsent(xTeclado, start);
+            
                         start++;
 
                     }
@@ -96,7 +95,7 @@ public class Proyecto {
                     System.out.println("Nombre del alumno:");
                     xTeclado = scan.readLine();
                     cursoAux1.putAlumno(xTeclado, start);
-                    alumnoXId.putIfAbsent(xTeclado, start);
+         
                     start++;
 
                     break;
@@ -113,7 +112,7 @@ public class Proyecto {
                     cursoAux = colegio.get(scan.readLine());
                     Alumno perkin;
                     System.out.println("Ingrese el nombre del alumno:");
-                    perkin = cursoAux.getAlumno(alumnoXId.get(scan.readLine()));
+                    perkin = cursoAux.getAlumno(scan.readLine());
                     //perkin.printAsistencia();
                     break;
                 case 7:
@@ -128,6 +127,8 @@ public class Proyecto {
                     lectura=scan.readLine();
                     if(esNumero(lectura))
                     cursoAux.eliminarAlumno(Integer.parseInt(lectura));
+                    
+                    else
                     cursoAux.eliminarAlumno(lectura);
                     cursoAux.printSetKey();
                     break;
