@@ -198,4 +198,12 @@ public class Curso {
             }
         }
     }
+    public int cantAlum(){
+        return listaEstu.size();
+    }
+    
+    public Alumno datosAlumno (int num){
+           int cod = listaEstu.get(num);
+           return estudiantes.get(cod);   
+    }
 }

@@ -64,14 +64,15 @@ public class Alumno {
     el primero es para una fecha de tipo String*/
     public void asistencia(String fecha, String siNo) {
         Dia aux = new Dia(fecha, siNo);
-
+        if(siNo.equals("si"))
+            totAsistencia++;
         asistencia.add(aux);
 
     }
 
     //el segundo es para una fecha con su respectivo día, mes y año, todos de tipo int
     public void asistencia(int dia, int mes, int anio, boolean siNo) {
-        // Dia aux=new Dia (dia,mes,anio,siNo);
+        
         asistencia.add(new Dia(dia, mes, anio, siNo));
 
     }
@@ -95,5 +96,10 @@ public class Alumno {
             aux.printDia();
         }
     }
-
+public int totalDias(){
+    return asistencia.size();
+}
+public int faltas(){
+    return(totalDias()-totAsistencia);
+}
 }

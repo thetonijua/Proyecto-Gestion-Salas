@@ -21,7 +21,7 @@ public class Proyecto {
         Menu m = new Menu();
         m.configVentana();
         Map<String, Curso> colegio;
-
+        Reporte reporte;
         colegio = new HashMap<>();
 
         String[] separado;
@@ -55,7 +55,7 @@ public class Proyecto {
 
                         for (int i = 3; i < largo; i++) {
                             cursoAux.putAlumno(separado[i], start);
-                  
+
                             start++;
 
                         }
@@ -75,12 +75,12 @@ public class Proyecto {
                     cursoAux.setCodigo(Integer.parseInt(scan.readLine()));
 
                     System.out.println("Cuantos alumno tiene el curso:");
-                    int fin=Integer.parseInt(scan.readLine());
+                    int fin = Integer.parseInt(scan.readLine());
                     for (int i = 0; i < fin; i++) {
                         System.out.println("Nombre del alumno " + (i + 1) + ":");
                         xTeclado = scan.readLine();
                         cursoAux.putAlumno(xTeclado, start);
-            
+
                         start++;
 
                     }
@@ -95,7 +95,7 @@ public class Proyecto {
                     System.out.println("Nombre del alumno:");
                     xTeclado = scan.readLine();
                     cursoAux1.putAlumno(xTeclado, start);
-         
+
                     start++;
 
                     break;
@@ -111,9 +111,13 @@ public class Proyecto {
                     System.out.println("Ingrese el nombre del curso:");
                     cursoAux = colegio.get(scan.readLine());
                     Alumno perkin;
-                    System.out.println("Ingrese el nombre del alumno:");
-                    perkin = cursoAux.getAlumno(scan.readLine());
-                    //perkin.printAsistencia();
+                    System.out.println("Ingrese el nombre/id del alumno:");
+                    lectura = scan.readLine();
+                    if (esNumero(lectura)) {
+                     perkin = cursoAux.getAlumno(Integer.parseInt(lectura));
+                    }
+                    perkin = cursoAux.getAlumno(lectura);
+                    perkin.printAsistencia();
                     break;
                 case 7: //Pasar la lista del curso
                     System.out.println("Ingrese curso:");
@@ -124,22 +128,23 @@ public class Proyecto {
                     cursoAux = colegio.get(scan.readLine());
                     cursoAux.printSetKey();
                     System.out.println("Ingrese ingrese nombre/id alumno a  eliminar");
-                    lectura=scan.readLine();
-                    if(esNumero(lectura))
-                    cursoAux.eliminarAlumno(Integer.parseInt(lectura));
-                    
-                    else
-                    cursoAux.eliminarAlumno(lectura);
+                    lectura = scan.readLine();
+                    if (esNumero(lectura)) {
+                        cursoAux.eliminarAlumno(Integer.parseInt(lectura));
+                    } else {
+                        cursoAux.eliminarAlumno(lectura);
+                    }
                     cursoAux.printSetKey();
                     break;
                 case 9: //Eliminar dia del alumno
                     System.out.println("Ingrese curso");
                     cursoAux = colegio.get(scan.readLine());
                     System.out.println("Ingrese ingrese Alumno");
-                    lectura=scan.readLine();
-                    if(esNumero(lectura))
-                    perkin=cursoAux.getAlumno(Integer.parseInt(lectura));
-                    perkin=cursoAux.getAlumno(lectura);
+                    lectura = scan.readLine();
+                    if (esNumero(lectura)) {
+                        perkin = cursoAux.getAlumno(Integer.parseInt(lectura));
+                    }
+                    perkin = cursoAux.getAlumno(lectura);
                     cursoAux.printLista();
                     perkin.printAsistencia();
                     System.out.println("Ingrese ingrese dia a eliminar (dd-mm-aa):");
@@ -147,6 +152,17 @@ public class Proyecto {
                     perkin.printAsistencia();
                     break;
 
+                case 10:
+                    System.out.println("Ingrese nombre archivo reporte");
+                    lectura = scan.readLine();
+                    reporte = new Reporte();
+                    reporte.exportar(lectura);
+                    for (String s : colegio.keySet()) {
+                        reporte.genReport(colegio.get(s));
+
+                    }
+                    reporte.listo();
+                    break;
                 default: //salir
                     selectMenu = 0;
                     break;
@@ -155,16 +171,6 @@ public class Proyecto {
         } while (selectMenu != 0);
 
     }
-
-    
-
-    
-
-    
-
-    
-
-    
 
     private static void menu() { //opciones del menú
 
