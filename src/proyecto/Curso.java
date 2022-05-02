@@ -198,10 +198,13 @@ public class Curso {
             }
         }
     }
+    
+    //retorna la cantidad de alumnos, que es el tamaño de la lista
     public int cantAlum(){
         return listaEstu.size();
     }
     
+    //retorna los datos del estudiante usando su código
     public Alumno datosAlumno (int num){
            int cod = listaEstu.get(num);
            return estudiantes.get(cod);   
