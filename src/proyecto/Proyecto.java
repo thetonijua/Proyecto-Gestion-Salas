@@ -159,7 +159,7 @@ public class Proyecto {
                     perkin.printAsistencia();
                     break;
 
-                case 10: //crear reporte
+                case 10: //Crea un reporte de los cursos del colegio
                     System.out.println("Ingrese nombre archivo reporte");
                     lectura = scan.readLine();
                     reporte = new Reporte();
@@ -180,7 +180,7 @@ public class Proyecto {
 
     }
 
-    private static void menu() { //opciones del menú
+    private static void menu() { //Opciones del menú
 
         System.out.println("1.- Importar Archivo CSV");
         System.out.println("2.- Agregar curso por teclado");
