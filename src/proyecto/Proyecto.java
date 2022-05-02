@@ -65,6 +65,7 @@ public class Proyecto {
 
                     } while (lectura != null);
                     break;
+                    
                 case 2: //Agregar curso
                     Curso cursoAux;
                     System.out.println("Ingrese el nombre del curso:");
@@ -99,14 +100,17 @@ public class Proyecto {
                     start++;
 
                     break;
+                    
                 case 4: //Mostrar lista de cursos
                     System.out.println(colegio.keySet());
                     break;
+                    
                 case 5: //Mostrar lista de alumnos del curso
                     System.out.println("Ingrese el nombre del curso:");
                     cursoAux = colegio.get(scan.readLine());
                     cursoAux.printLista();
                     break;
+                    
                 case 6: //Mostrar la asistencia del alumno
                     System.out.println("Ingrese el nombre del curso:");
                     cursoAux = colegio.get(scan.readLine());
@@ -119,10 +123,12 @@ public class Proyecto {
                     perkin = cursoAux.getAlumno(lectura);
                     perkin.printAsistencia();
                     break;
+                    
                 case 7: //Pasar la lista del curso
                     System.out.println("Ingrese curso:");
                     colegio.get(scan.readLine()).pasarLista();
                     break;
+                    
                 case 8: //Eliminar alumno del curso
                     System.out.println("Ingrese curso");
                     cursoAux = colegio.get(scan.readLine());
@@ -136,6 +142,7 @@ public class Proyecto {
                     }
                     cursoAux.printSetKey();
                     break;
+                    
                 case 9: //Eliminar dia del alumno
                     System.out.println("Ingrese curso");
                     cursoAux = colegio.get(scan.readLine());
@@ -152,7 +159,7 @@ public class Proyecto {
                     perkin.printAsistencia();
                     break;
 
-                case 10:
+                case 10: //crear reporte
                     System.out.println("Ingrese nombre archivo reporte");
                     lectura = scan.readLine();
                     reporte = new Reporte();
@@ -163,6 +170,7 @@ public class Proyecto {
                     }
                     reporte.listo();
                     break;
+                    
                 default: //salir
                     selectMenu = 0;
                     break;
@@ -183,6 +191,7 @@ public class Proyecto {
         System.out.println("7.- Pasar lista");
         System.out.println("8.- Eliminar alumno");
         System.out.println("9.- Eliminar dia");
+        System.out.println("10.- Crear reporte");
         System.out.println("0.- Salir");
 
     }
