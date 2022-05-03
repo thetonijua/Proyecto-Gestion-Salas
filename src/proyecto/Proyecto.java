@@ -18,7 +18,8 @@ public class Proyecto {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        Menu m = new Menu();
+        Colegio c= new Colegio();
+        Menu m = new Menu(c);
         m.configVentana();
         Map<String, Curso> colegio;
         Reporte reporte;
