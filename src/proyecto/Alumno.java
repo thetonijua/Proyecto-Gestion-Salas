@@ -96,10 +96,14 @@ public class Alumno {
             aux.printDia();
         }
     }
-public int totalDias(){
-    return asistencia.size();
-}
-public int faltas(){
-    return(totalDias()-totAsistencia);
-}
+    
+    //retorna el total de días, que es el tamaño de la lista
+    public int totalDias(){
+        return asistencia.size();
+    }
+    
+    //retorna el total de inasistencias
+    public int faltas(){
+        return(totalDias()-totAsistencia);
+    }
 }

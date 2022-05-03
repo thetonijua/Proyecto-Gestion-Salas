@@ -15,12 +15,14 @@ public class Reporte {
 
     PrintWriter salida;
     String[] array;
-
+     
+    //Crea el archivo .txt del reporte
     public void exportar(String name) throws IOException {
         salida = new PrintWriter(name + ".txt");
 
     }
 
+    //Genera los datos del curso, incluyendo su nombre, código, porcentaje de asistencia mínima, cantidad de alumnos y los alumnos en sí
     public void genReport(Curso curso) {
         salida.println("Nombre del Curso: " + curso.getNombre());
         salida.println("Codigo del Curso: " + curso.getCodigo());
@@ -38,6 +40,7 @@ public class Reporte {
         separarCursos();
     }
 
+    //Separa los distintos cursos del colegio
     private void separarCursos() {
         salida.println("\n");
         for (int i = 0; i < 138; i++) {
@@ -46,6 +49,7 @@ public class Reporte {
         salida.println("\n");
     }
 
+    //Separa los distintos alumnos del curso
     private void separarAlumno() {
         salida.println();
         for (int i = 0; i < 138; i++) {
@@ -53,12 +57,14 @@ public class Reporte {
         }
         salida.println();
     }
-
+    
+    //Escribe el texto del reporte
     public void escribir(String texto) {
         salida.print(texto);
 
     }
 
+    //Cierra una vez terminado el reporte
     public void listo() {
         salida.close();
     }
