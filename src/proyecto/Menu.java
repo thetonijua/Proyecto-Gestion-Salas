@@ -4,12 +4,11 @@
 //              MENU ES UNA CLASE INTERFAZ
 //---------------------------------------------------------------
 
+// Avance de interfaz grafica para entregas futuras
 
 package proyecto;
 import javax.swing.*;
 import java.awt.event.*;
-import java.util.HashMap;
-import java.util.Map;
 import javax.swing.event.*;
 /**
  *
@@ -25,32 +24,30 @@ public class Menu extends JFrame implements ActionListener,ChangeListener{
     private JButton boton1;
     private JRadioButton radio1,radio2;
     private ButtonGroup bg;
+    private Colegio c;
+    
+    
 
 //    private JComboBox combo1;
 
     
-    public Menu(){
-        super("Gestion Salas");//TITULO VENTANA
-        
+    public Menu(Colegio c){
+        super("Gestion Salas (test version)");//TITULO VENTANA
+        this.c=c;
         //colegio = new HashMap<>();
         
         //ELEMENTOS VENTANA
-       
+        
         label1= new JLabel("Seleccione una opción");
         boton1= new JButton("Siguiente");
         radio1= new JRadioButton("Importar Archivo CSV");
         radio2= new JRadioButton("Crear Colegio");
-        //radio3= new JRadioButton("Agregar Alumno");
-        //radio4= new JRadioButton("Mostrar listado de cursos");
-        //radio5= new JRadioButton("Mostrar listado de alumnos");
-        //radio6= new JRadioButton("Mostrar listado de dias");
-        //radio7= new JRadioButton("Pasar lista");
-        //radio8= new JRadioButton("Eliminar alumno");
-        //radio9= new JRadioButton("Eliminar dia");
         bg= new ButtonGroup();
        
 
     }
+    
+ 
     
     @Override
     public void actionPerformed(ActionEvent e){
@@ -62,12 +59,15 @@ public class Menu extends JFrame implements ActionListener,ChangeListener{
                 this.setVisible(true);
             }
             if(option==2){
-                Colegio c= new Colegio();
+                
                 c.configVentana();
             }
         }    
     }
     
+    public  void getFrameColegio(){
+        c.configVentana();
+    }
     
 //    @Override
 //    public void itemStateChanged(ItemEvent e){
