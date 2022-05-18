@@ -19,8 +19,6 @@ public class Proyecto {
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
         Colegio c= new Colegio();
-        Menu m = new Menu(c);
-        m.configVentana();
         Map<String, Curso> colegio;
         Reporte reporte;
         colegio = new HashMap<>();
