@@ -63,7 +63,7 @@ public class Alumno {
     /*dos métodos para añadir a la lista de asistencia una fecha y si el alumno asistió o no esa fecha
     el primero es para una fecha de tipo String*/
     public void asistencia(String fecha, String siNo) {
-        Dia aux = new Dia(fecha, siNo);
+        Dia aux = new DiaNormal(fecha, siNo);
         if(siNo.equals("si"))
             totAsistencia++;
         asistencia.add(aux);
@@ -73,7 +73,7 @@ public class Alumno {
     //el segundo es para una fecha con su respectivo día, mes y año, todos de tipo int
     public void asistencia(int dia, int mes, int anio, boolean siNo) {
         
-        asistencia.add(new Dia(dia, mes, anio, siNo));
+        asistencia.add(new DiaNormal(dia, mes, anio, siNo));
 
     }
 
@@ -81,7 +81,7 @@ public class Alumno {
     public void eliminarDia(String dd) {
         for (int i = 0; i < asistencia.size(); i++) {
             if (dd.equals(asistencia.get(i).getFecha())) {
-                if ("presente".equals(asistencia.get(i).getAsistencia())) {
+                if ("Presente".equals(asistencia.get(i).isAsistencia())) {
                     totAsistencia--;
                 }
                 asistencia.remove(i);
