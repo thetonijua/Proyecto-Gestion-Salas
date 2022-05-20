@@ -107,16 +107,18 @@ public class Alumno implements Asistencia {
         return asistencia.size();
     }
     
-    public boolean comprobarAsistenciaDia(String fecha){
+    public int comprobarAsistenciaDia(String fecha){
+        
         for (int i = 0; i < asistencia.size(); i++) {
             if (fecha.equals(asistencia.get(i).getFecha())) {
                 if ("Presente".equals(asistencia.get(i).isAsistencia())) {
-                    return true;
+                    return 0;
                 }
-                
+                return 1;    
             }
         }
-        return false;
+        return 2;
+        
     } 
     
     //retorna el total de inasistencias

@@ -166,10 +166,15 @@ public class Curso implements Asistencia {
         for (int i = 0; i < largo; i++) {
             cod = listaEstu.get(i);
             aux = estudiantes.get(cod);
-            if(aux.comprobarAsistenciaDia(lectura)){
+            if(aux.comprobarAsistenciaDia(lectura)==0){
                System.out.println(aux.getNombre() + " presente."); 
-            }else{
+            }
+            if(aux.comprobarAsistenciaDia(lectura)==1){
                System.out.println(aux.getNombre() + " ausente.");
+            }
+            if(aux.comprobarAsistenciaDia(lectura)==2){
+                System.out.println("Dia no agregado");
+                break;
             }
         }
         System.out.println("\n");
