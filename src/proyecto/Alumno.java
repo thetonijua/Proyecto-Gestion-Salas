@@ -6,18 +6,20 @@
 package proyecto;
 
 import java.util.*;
+import java.io.*;
 
 /**
  *
  * @author BruceLee
  */
-public class Alumno {
+public class Alumno implements Asistencia {
 
     //variables de instancia
     private String nombre;
     private int id;
     private int totAsistencia;
     private ArrayList<Dia> asistencia;
+    BufferedReader scan = new BufferedReader(new InputStreamReader(System.in));
 
     //constructores
     public Alumno() {
@@ -62,7 +64,10 @@ public class Alumno {
     //métodos de la clase
     /*dos métodos para añadir a la lista de asistencia una fecha y si el alumno asistió o no esa fecha
     el primero es para una fecha de tipo String*/
-    public void asistencia(String fecha, String siNo) {
+    @Override
+    public void tomarAsistencia(String fecha) throws IOException {
+        
+        String siNo = scan.readLine();
         Dia aux = new DiaNormal(fecha, siNo);
         if(siNo.equals("si"))
             totAsistencia++;
@@ -71,11 +76,10 @@ public class Alumno {
     }
 
     //el segundo es para una fecha con su respectivo día, mes y año, todos de tipo int
-    public void asistencia(int dia, int mes, int anio, boolean siNo) {
-        
+    //@Override
+    /*public void tomarAsistencia(int dia, int mes, int anio, boolean siNo) {
         asistencia.add(new DiaNormal(dia, mes, anio, siNo));
-
-    }
+    }*/
 
     //elimina un día de la lista
     public void eliminarDia(String dd) {
@@ -90,6 +94,7 @@ public class Alumno {
     }
 
     //imprime toda la asistencia del alumno
+    @Override
     public void printAsistencia() {
         for (int i = 0; i < asistencia.size(); i++) {
             Dia aux = asistencia.get(i);
@@ -101,6 +106,18 @@ public class Alumno {
     public int totalDias(){
         return asistencia.size();
     }
+    
+    public boolean comprobarAsistenciaDia(String fecha){
+        for (int i = 0; i < asistencia.size(); i++) {
+            if (fecha.equals(asistencia.get(i).getFecha())) {
+                if ("Presente".equals(asistencia.get(i).isAsistencia())) {
+                    return true;
+                }
+                
+            }
+        }
+        return false;
+    } 
     
     //retorna el total de inasistencias
     public int faltas(){

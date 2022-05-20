@@ -12,7 +12,7 @@ import java.io.*;
  *
  * @author BruceLee
  */
-public class Curso {
+public class Curso implements Asistencia {
 
     //variables de instancia
     private String nombre;
@@ -141,29 +141,44 @@ public class Curso {
     }
 
     //pasa la lista de asistencia, preguntando si el estudiante está presente o no
-    public void pasarLista() throws IOException {
+    @Override
+    public void tomarAsistencia(String fecha) throws IOException {
         int largo = listaEstu.size();
         int cod;
-        String lectura;
-        String fecha;
-        System.out.println("Ingrese Fecha");
-        fecha = scan.readLine();
 
         Alumno aux;
         for (int i = 0; i < largo; i++) {
             cod = listaEstu.get(i);
             aux = estudiantes.get(cod);
             System.out.println("Esta presente " + aux.getNombre() + "? (si/no)");
-            lectura = scan.readLine();
-            aux.asistencia(fecha, lectura);
+            aux.tomarAsistencia(fecha);
         }
     }
-
+    //Asistencia del curso en una fecha
+    @Override
+    public void printAsistencia()throws IOException{
+        int largo = listaEstu.size();
+        int cod;
+        System.out.println("Ingrese fecha a revisar:");
+        String lectura= scan.readLine();
+        System.out.println("\n");
+        Alumno aux;
+        for (int i = 0; i < largo; i++) {
+            cod = listaEstu.get(i);
+            aux = estudiantes.get(cod);
+            if(aux.comprobarAsistenciaDia(lectura)){
+               System.out.println(aux.getNombre() + " presente."); 
+            }else{
+               System.out.println(aux.getNombre() + " ausente.");
+            }
+        }
+        System.out.println("\n");
+        
+    }
     //imprime toda la lista de estudiantes
     public void printLista() throws IOException {
         int largo = listaEstu.size();
         int cod;
-        String lectura;
 
         Alumno aux;
         for (int i = 0; i < largo; i++) {

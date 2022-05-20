@@ -16,6 +16,7 @@ public class Proyecto {
 
     /**
      * @param args the command line arguments
+     * @throws java.io.FileNotFoundException
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
         Colegio c= new Colegio();
@@ -114,7 +115,7 @@ public class Proyecto {
                     System.out.println("Ingrese el nombre del curso:");
                     cursoAux = colegio.get(scan.readLine());
                     Alumno perkin;
-                    System.out.println("Ingrese el nombre/id del alumno:");
+                    System.out.println("Ingrese el nombre/id del alumno: \n");
                     lectura = scan.readLine();
                     if (esNumero(lectura)) {
                      perkin = cursoAux.getAlumno(Integer.parseInt(lectura));
@@ -124,8 +125,11 @@ public class Proyecto {
                     break;
                     
                 case 7: //Pasar la lista del curso
+                    
+                    System.out.println("Ingrese Fecha");
+                    String fecha = scan.readLine();
                     System.out.println("Ingrese curso:");
-                    colegio.get(scan.readLine()).pasarLista();
+                    colegio.get(scan.readLine()).tomarAsistencia(fecha);
                     break;
                     
                 case 8: //Eliminar alumno del curso
@@ -168,6 +172,12 @@ public class Proyecto {
 
                     }
                     reporte.listo();
+                    break;
+                    
+                case 11: //Asistencia en una fecha de un curso
+                    System.out.println("Ingrese curso");
+                    cursoAux = colegio.get(scan.readLine());
+                    cursoAux.printAsistencia();
                     break;
                     
                 default: //salir
