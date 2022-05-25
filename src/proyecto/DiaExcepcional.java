@@ -19,9 +19,9 @@ public class DiaExcepcional extends Dia{
 
     @Override
     public void printDia() {
-         System.out.println(getDia() + "-" + getMes() + "-" + getAnio() + "no se realisaron clases por "+festivo);
+         System.out.println(getDia() + "-" + getMes() + "-" + getAnio() + "no se realizaron clases por "+festivo);
     }
-        @Override
+    @Override
     public String isAsistencia() {
         return "No hubo clases";
     }
