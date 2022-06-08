@@ -19,16 +19,10 @@ public class Proyecto {
      * @throws java.io.FileNotFoundException
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
-        Colegio c= new Colegio();
-        Map<String, Curso> colegio;
-        Reporte reporte;
-        colegio = new HashMap<>();
+        Colegio colegio = new Colegio();
 
-        String[] separado;
-        String xTeclado;
         int selectMenu;
-        int start, largo;
-        start = 0;
+
         BufferedReader scan = new BufferedReader(new InputStreamReader(System.in));
 
         do {
@@ -38,159 +32,50 @@ public class Proyecto {
 
             switch (selectMenu) {
                 case 1: //Importar CSV
-                    CSV file;
                     System.out.println("Ingrese nombre de archivo CSV (ejemplo/sugerencia prueba)");
-                    file = new CSV(scan.readLine());
-                    String lectura = file.firstLine();
-                    lectura = file.nextLine();
-                    do {
-                        separado = lectura.split(";");
-
-                        largo = separado.length;
-
-                        Curso cursoAux;
-                        cursoAux = new Curso(separado[0]);
-                        cursoAux.setPorceAprobacion(Float.parseFloat(separado[2]));
-                        cursoAux.setCodigo(Integer.parseInt(separado[1]));
-
-                        for (int i = 3; i < largo; i++) {
-                            cursoAux.putAlumno(separado[i], start);
-
-                            start++;
-
-                        }
-
-                        colegio.put(separado[0], cursoAux);
-                        lectura = file.nextLine();
-
-                    } while (lectura != null);
+                    colegio.importarCursos(scan.readLine());
                     break;
-                    
+
                 case 2: //Agregar curso
-                    Curso cursoAux;
-                    System.out.println("Ingrese el nombre del curso:");
-                    cursoAux = new Curso(scan.readLine());
-                    System.out.println("Ingrese el porcentaje de aprobacion del curso(ej. 0.1):");
-                    cursoAux.setPorceAprobacion(Float.parseFloat(scan.readLine()));
-                    System.out.println("Ingrese el codigo del curso (ej: 14):");
-                    cursoAux.setCodigo(Integer.parseInt(scan.readLine()));
-
-                    System.out.println("Cuantos alumno tiene el curso:");
-                    int fin = Integer.parseInt(scan.readLine());
-                    for (int i = 0; i < fin; i++) {
-                        System.out.println("Nombre del alumno " + (i + 1) + ":");
-                        xTeclado = scan.readLine();
-                        cursoAux.putAlumno(xTeclado, start);
-
-                        start++;
-
-                    }
-
-                    colegio.put(cursoAux.getNombre(), cursoAux);
+                    colegio.agregarCurso();
                     break;
 
-                case 3: //Agregar alumno al curso
-                    Curso cursoAux1;
-                    System.out.println("Ingrese el nombre del curso");
-                    cursoAux1 = colegio.get(scan.readLine());
-                    System.out.println("Nombre del alumno:");
-                    xTeclado = scan.readLine();
-                    cursoAux1.putAlumno(xTeclado, start);
-
-                    start++;
-
-                    break;
-                    
                 case 4: //Mostrar lista de cursos
-                    System.out.println(colegio.keySet());
+                    System.out.println(colegio.colegio.keySet());
                     break;
-                    
+
                 case 5: //Mostrar lista de alumnos del curso
-                    System.out.println("Ingrese el nombre del curso:");
-                    cursoAux = colegio.get(scan.readLine());
-                    cursoAux.printLista();
+                    colegio.mostrarAlumno();
                     break;
-                    
+
                 case 6: //Mostrar la asistencia del alumno
-                    System.out.println("Ingrese el nombre del curso:");
-                    cursoAux = colegio.get(scan.readLine());
-                    Alumno perkin;
-                    System.out.println("Ingrese el nombre/id del alumno: \n");
-                    lectura = scan.readLine();
-                    if (esNumero(lectura)) {
-                     perkin = cursoAux.getAlumno(Integer.parseInt(lectura));
-                    }
-                    perkin = cursoAux.getAlumno(lectura);
-                    perkin.printAsistencia();
+                    colegio.showAsis();
                     break;
-                    
+
                 case 7: //Pasar la lista del curso
-                    
-                    System.out.println("Ingrese Fecha (dd-mm-aa)");
-                    String fecha = scan.readLine();
-                    System.out.println("Ingrese curso:");
-                    colegio.get(scan.readLine()).tomarAsistencia(fecha);
+                    colegio.pasarLista();
                     break;
-                    
+
                 case 8: //Eliminar alumno del curso
-                    System.out.println("Ingrese curso");
-                    cursoAux = colegio.get(scan.readLine());
-                    cursoAux.printSetKey();
-                    System.out.println("Ingrese nombre/id alumno a  eliminar");
-                    lectura = scan.readLine();
-                    if (esNumero(lectura)) {
-                        cursoAux.eliminarAlumno(Integer.parseInt(lectura));
-                    } else {
-                        cursoAux.eliminarAlumno(lectura);
-                    }
-                    cursoAux.printSetKey();
+                    colegio.delAlumno();
                     break;
-                    
+
                 case 9: //Eliminar dia del alumno
-                    System.out.println("Ingrese curso");
-                    cursoAux = colegio.get(scan.readLine());
-                    System.out.println("Ingrese Alumno");
-                    lectura = scan.readLine();
-                    if (esNumero(lectura)) {
-                        perkin = cursoAux.getAlumno(Integer.parseInt(lectura));
-                    }
-                    perkin = cursoAux.getAlumno(lectura);
-                    cursoAux.printLista();
-                    perkin.printAsistencia();
-                    System.out.println("Ingrese ingrese dia a eliminar (dd-mm-aa):");
-                    perkin.eliminarDia(scan.readLine());
-                    perkin.printAsistencia();
+                    colegio.delDia();
                     break;
 
                 case 10: //Crea un reporte de los cursos del colegio
-                    System.out.println("Ingrese nombre archivo reporte");
-                    lectura = scan.readLine();
-                    reporte = new Reporte();
-                    reporte.exportar(lectura);
-                    for (String s : colegio.keySet()) {
-                        reporte.genReport(colegio.get(s));
+                    colegio.reporte();
+                    break;
 
-                    }
-                    reporte.listo();
-                    break;
-                    
                 case 11: //Asistencia en una fecha de un curso
-                    System.out.println("Ingrese curso");
-                    cursoAux = colegio.get(scan.readLine());
-                    cursoAux.printAsistencia();
+                    colegio.asisXDia();
                     break;
-                    
+
                 case 12: //Alumnos de todo el colegio que asistieron a una determinada fecha
-                    System.out.println("Ingrese fecha a revisar:");
-                    lectura = scan.readLine();
-                    System.out.println("\n");
-                    for (String name : colegio.keySet()) {
-                        cursoAux = colegio.get(name);
-                        cursoAux.siFueron(lectura);
-                    }
-                    
+                    colegio.asisXDiaColegio();
                     break;
-                    
+
                 default: //salir
                     selectMenu = 0;
                     break;
