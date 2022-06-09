@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 import static proyecto.Proyecto.esNumero;
 
 /**
@@ -21,6 +22,7 @@ public class Colegio {
 
     Map<String, Curso> colegio;
     Map<String, Integer> cursoXId;
+    public Set<String> listadoCursos;
     int cantAlumnos;
     Curso curso;
     String xTeclado;
@@ -213,5 +215,10 @@ public class Colegio {
         System.out.println("Ingrese ingrese dia a cambiar (dd-mm-aa):");
         String fecha = scan.readLine();
         curso.cambiarAsistencia(fecha, lectura);
+    }
+    
+    public void listaCursosString(){
+        listadoCursos= colegio.keySet();
+        
     }
 }

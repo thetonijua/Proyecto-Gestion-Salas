@@ -19,14 +19,17 @@ import vista.Menu;
  */
 public class Controlador implements ActionListener{
     
-    private AgregarCurso agregarCurso;
     private Menu menu;
+    private AgregarCurso agregarCurso;
     private ListarCursos listarCursos;
     private Cursomod cursoM;
+    private CtrlAgregar ctrlAgregar;
     
     public Controlador(Menu menu){
         this.menu=menu;
-        
+        agregarCurso= new AgregarCurso();
+        cursoM= new Cursomod();
+        ctrlAgregar= new CtrlAgregar(agregarCurso,cursoM);
     }
     
     public void iniciarmenu(){
@@ -37,17 +40,10 @@ public class Controlador implements ActionListener{
         //menu.dispose();
     }
     
-    public void iniciarAgregarCurso(){
-        agregarCurso= new AgregarCurso();
-        agregarCurso.setLocationRelativeTo(null);
-        agregarCurso.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        agregarCurso.setVisible(true);
-        menu.setVisible(false);
-        //agregarCurso.dispose();
-    }
+
     
     public void iniciarListarCursos(){
-        listarCursos= new ListarCursos();
+        //listarCursos= new ListarCursos();
         
     }
     
@@ -55,8 +51,9 @@ public class Controlador implements ActionListener{
     public void actionPerformed(ActionEvent e){
         
         if(menu.agregar.isSelected()){
-
-            iniciarAgregarCurso();
+            
+            ctrlAgregar.iniciarAgregarCurso();
+            menu.setVisible(false);
         }
         
         if(menu.listar.isSelected()){
@@ -64,10 +61,9 @@ public class Controlador implements ActionListener{
             
         }
         
+       
         
-        /*cursoM.setName(agregarCurso.nombre.getText());
-        cursoM.setAprob(agregarCurso.aprob.getText());
-        cursoM.setCod(agregarCurso.cod.getText());*/
+
     }
     
     

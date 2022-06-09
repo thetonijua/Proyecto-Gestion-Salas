@@ -7,6 +7,8 @@ package proyecto;
 
 import java.io.*;
 import java.util.*;
+import controlador.Controlador;
+import vista.Menu;
 
 /**
  *
@@ -20,7 +22,9 @@ public class Proyecto {
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
         Colegio colegio = new Colegio();
-
+        Menu menu= new Menu();
+        Controlador controlador= new Controlador(menu);
+        controlador.iniciarmenu();
         int selectMenu;
 
         BufferedReader scan = new BufferedReader(new InputStreamReader(System.in));

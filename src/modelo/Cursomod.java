@@ -23,8 +23,9 @@ public class Cursomod {
         return lista;
     }
 
-    public void setLista(Set<String> lista) {
+    public Set<String> srLista(Set<String> lista) {
         this.lista = colegio.listadoCursos;
+        return lista;
     }
 
     public Colegio getColegio() {
@@ -61,4 +62,12 @@ public class Cursomod {
     }
     
     
-}
+}/*   
+colegio
+
+
+proyecto
+ Menu menu= new Menu();
+        Controlador controlador= new Controlador(menu);
+        controlador.iniciarmenu();
+*/
