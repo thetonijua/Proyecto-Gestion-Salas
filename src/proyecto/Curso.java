@@ -4,51 +4,43 @@
  * and open the template in the editor.
  */
 package proyecto;
+
 import java.util.*;
 import java.io.*;
-
 
 /**
  *
  * @author BruceLee
  */
-public class Curso implements Asistencia {
+public class Curso {
 
     //variables de instancia
     private String nombre;
     private int codigo;
     private float porceAprobacion;
-    private Map<Integer, Alumno> estudiantes;
-    private Map<String, Integer> nombreXId;
-    private List<Integer> listaEstu;
+    private ConjuntoAlumnos alumnos;
     BufferedReader scan = new BufferedReader(new InputStreamReader(System.in)); //usado para leer la lista
-    
 
     //constructores
     public Curso(String name, float numero, int cod) {
         nombre = name;
         porceAprobacion = numero;
-        estudiantes = new HashMap();
-        nombreXId = new HashMap();
         codigo = cod;
-        listaEstu = new ArrayList();
+        alumnos = new ConjuntoAlumnos();
+
     }
 
     public Curso() {
         nombre = "Por asignar";
         porceAprobacion = (float) 0;
-        estudiantes = new HashMap();
-        nombreXId = new HashMap();
-        listaEstu = new ArrayList();
+        alumnos = new ConjuntoAlumnos();
 
     }
 
     public Curso(String name) {
         nombre = name;
         porceAprobacion = (float) 0;
-        estudiantes = new HashMap();
-        nombreXId = new HashMap();
-        listaEstu = new ArrayList();
+        alumnos = new ConjuntoAlumnos();
     }
 
     //setters y getters de las variables
@@ -81,158 +73,70 @@ public class Curso implements Asistencia {
         this.porceAprobacion = porceAprobacion;
     }
 
-    //tres getters para alumno por si el argumento es Integer, float o String
+    //2 getters para alumno por si el argumento es Integer, float o String
     public Alumno getAlumno(Integer id) {
-
-        if (!estudiantes.containsKey(id)) {
-            System.out.println("No se encontro ");
-
-        }
-        return estudiantes.get(id);
-    }
-
-    public Alumno getAlumno(float id) {
-        int num;
-        float aux = id % 1;
-        aux = id - aux;
-        num = (int) aux;
-
-        if (!estudiantes.containsKey(num)) {
-            System.out.println("No se encontro ");
-
-        }
-        return estudiantes.get(num);
+        return alumnos.getAlumno(id);
     }
 
     public Alumno getAlumno(String txt) {
-        int num = nombreXId.get(txt);
-
-        if (!estudiantes.containsKey(num)) {
-            System.out.println("No se encontro ");
-
-        }
-        return estudiantes.get(num);
+        return alumnos.getAlumno(txt);
     }
 
     //métodos de la clase
     /*dos métodos para añadir el alumno a la lista
     el primero es para una id de tipo int*/
     public void putAlumno(String name, int id) {
-        Alumno aux = new Alumno(name, id);
-        nombreXId.put(name, id);
-        estudiantes.put(id, aux);
-        listaEstu.add(id);
+        alumnos.putAlumno(name, id);
     }
 
     //el segundo es para una id de tipo String
     // Metodo ocupado en interfaz para ingresar alumno
     public void putAlumno(String name, String id) {
-        int num = Integer.parseInt(id);
-        Alumno aux = new Alumno(name, num);
-        estudiantes.put(num, aux);
-        nombreXId.put(name, num);
-        listaEstu.add(num);
-       
+        alumnos.putAlumno(name, id);
+
     }
 
     //imprime la key del estudiante en el mapa
     public void printSetKey() {
-        System.out.println(estudiantes.keySet());
+        alumnos.printSetKey();
     }
 
     //pasa la lista de asistencia, preguntando si el estudiante está presente o no
-    @Override
     public void tomarAsistencia(String fecha) throws IOException {
-        int largo = listaEstu.size();
-        int cod;
+        alumnos.tomarAsistencia(fecha);
+    }
 
-        Alumno aux;
-        for (int i = 0; i < largo; i++) {
-            cod = listaEstu.get(i);
-            aux = estudiantes.get(cod);
-            System.out.println("Esta presente " + aux.getNombre() + "? (si/no)");
-            aux.tomarAsistencia(fecha);
-        }
+//Asistencia del curso en una fecha
+    public void printAsistencia() throws IOException {
+        alumnos.printAsistencia();
     }
-    //Asistencia del curso en una fecha
-    @Override
-    public void printAsistencia()throws IOException{
-        int largo = listaEstu.size();
-        int cod;
-        System.out.println("Ingrese fecha a revisar:");
-        String lectura= scan.readLine();
-        System.out.println("\n");
-        Alumno aux;
-        for (int i = 0; i < largo; i++) {
-            cod = listaEstu.get(i);
-            aux = estudiantes.get(cod);
-            if(aux.comprobarAsistenciaDia(lectura)==0){
-               System.out.println(aux.getNombre() + " presente."); 
-            }
-            if(aux.comprobarAsistenciaDia(lectura)==1){
-               System.out.println(aux.getNombre() + " ausente.");
-            }
-            if(aux.comprobarAsistenciaDia(lectura)==2){
-                System.out.println("Dia no agregado");
-                break;
-            }
-        }
-        System.out.println("\n");
-        
-    }
+
     //imprime toda la lista de estudiantes
     public void printLista() throws IOException {
-        int largo = listaEstu.size();
-        int cod;
-
-        Alumno aux;
-        for (int i = 0; i < largo; i++) {
-            cod = listaEstu.get(i);
-            aux = estudiantes.get(cod);
-            System.out.println(aux.getNombre());
-        }
+        alumnos.printLista();
     }
 
     //elimina un alumno de la lista según su id
     public void eliminarAlumno(int id) {
-        int i;
-        if (estudiantes.remove(id) != null) {
-            for (i = 0; i < listaEstu.size(); i++) {
-
-                if (id == listaEstu.get(i)) {
-                    listaEstu.remove(i);
-                }
-
-            }
-        }
+        alumnos.eliminarAlumno(id);
     }
-    
+
     //elimina un alumno de la lista según su nombre
     public void eliminarAlumno(String name) {
-        int i,id;
-        id=nombreXId.get(name);
-        if (estudiantes.remove(id) != null) {
-            for (i = 0; i < listaEstu.size(); i++) {
-
-                if (id == listaEstu.get(i)) {
-                    listaEstu.remove(i);
-                }
-
-            }
-        }
+        alumnos.eliminarAlumno(name);
     }
-    
+
     //retorna la cantidad de alumnos, que es el tamaño de la lista
-    public int cantAlum(){
-        return listaEstu.size();
+    public int cantAlum() {
+        return alumnos.cantAlum();
     }
-    
+
     //retorna los datos del estudiante usando su código
-    public Alumno datosAlumno (int num){
-           int cod = listaEstu.get(num);
-           return estudiantes.get(cod);   
+    public Alumno datosAlumno(int num) {
+
+        return alumnos.datosAlumno(num);
     }
- 
+
     /*public void asistenciaMin() throws IOException {
         int largo = listaEstu.size();
         int cod;
@@ -245,39 +149,17 @@ public class Curso implements Asistencia {
             
         }
     }*/
-    
-    public void siFueron(String fecha)throws IOException{
-        int largo = listaEstu.size();
-        int cod;
-        Alumno aux;
-        for (int i = 0; i < largo; i++) {
-            cod = listaEstu.get(i);
-            aux = estudiantes.get(cod);
-            if(aux.comprobarAsistenciaDia(fecha)==0){
-               System.out.println(aux.getNombre() + " presente."); 
-            }
-        }
-        System.out.println("\n");
-        
+    public void siFueron(String fecha) throws IOException {
+        alumnos.siFueron(fecha);
+
     }
-    
     //2 métodos para cambiar la asistencia, por si se ingresa el nombre o el id del alumno
+
     public void cambiarAsistencia(String fecha, String nombre) throws IOException {
-        int cod;
-        int id;
-        id = nombreXId.get(nombre);
-        Alumno aux;
-        cod = listaEstu.get(id);
-        aux = estudiantes.get(cod);
-        aux.cambiarDia(fecha);
+        alumnos.cambiarAsistencia(fecha, nombre);
     }
-    
+
     public void cambiarAsistencia(String fecha, int id) throws IOException {
-        int cod;
-        id = nombreXId.get(nombre);
-        Alumno aux;
-        cod = listaEstu.get(id);
-        aux = estudiantes.get(cod);
-        aux.cambiarDia(fecha);
+        alumnos.cambiarAsistencia(fecha, id);
     }
 }
