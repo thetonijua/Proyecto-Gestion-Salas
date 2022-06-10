@@ -35,7 +35,7 @@ public class AgregarCurso extends javax.swing.JFrame {
         aprob = new javax.swing.JTextField();
         cod = new javax.swing.JTextField();
         btnAgregar = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,7 +63,7 @@ public class AgregarCurso extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("volver");
+        btnVolver.setText("volver");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -87,7 +87,7 @@ public class AgregarCurso extends javax.swing.JFrame {
                         .addComponent(btnAgregar))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(161, 161, 161)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -109,7 +109,7 @@ public class AgregarCurso extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(cod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
-                .addComponent(jButton2)
+                .addComponent(btnVolver)
                 .addGap(31, 31, 31))
         );
 
@@ -122,7 +122,7 @@ public class AgregarCurso extends javax.swing.JFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     /**
@@ -163,8 +163,8 @@ public class AgregarCurso extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTextField aprob;
     public javax.swing.JButton btnAgregar;
+    public javax.swing.JButton btnVolver;
     public javax.swing.JTextField cod;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

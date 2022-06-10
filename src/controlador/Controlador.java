@@ -10,6 +10,7 @@ import modelo.Cursomod;
 import vista.AgregarCurso;
 import java.awt.event.ActionListener;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
+import proyecto.Colegio;
 import vista.ListarCursos;
 import vista.Menu;
 
@@ -18,18 +19,24 @@ import vista.Menu;
  * @author J_Hor
  */
 public class Controlador implements ActionListener{
-    
+    private Colegio colegio;
     private Menu menu;
     private AgregarCurso agregarCurso;
     private ListarCursos listarCursos;
     private Cursomod cursoM;
     private CtrlAgregar ctrlAgregar;
+    private String nombreCurso;
+    private String nombreAlumno;
+    private String porceAprob;
+    private String fecha;
     
-    public Controlador(Menu menu){
+    
+    public Controlador(Menu menu, Colegio colegio){
+        this.colegio=colegio;
         this.menu=menu;
         agregarCurso= new AgregarCurso();
         cursoM= new Cursomod();
-        ctrlAgregar= new CtrlAgregar(agregarCurso,cursoM);
+        ctrlAgregar= new CtrlAgregar(agregarCurso,cursoM, this);
     }
     
     public void iniciarmenu(){
@@ -40,7 +47,13 @@ public class Controlador implements ActionListener{
         //menu.dispose();
     }
     
-
+    public void setNombreCurso(String name){
+        nombreCurso=name;
+    }
+    
+public void setMenuVisivle(){
+    menu.setVisible(true);
+}
     
     public void iniciarListarCursos(){
         //listarCursos= new ListarCursos();
@@ -57,7 +70,7 @@ public class Controlador implements ActionListener{
         }
         
         if(menu.listar.isSelected()){
-         
+            System.out.println(nombreCurso);
             
         }
         

@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 package vista;
+
 import controlador.Controlador;
 import static java.awt.SystemColor.menu;
+
 /**
  *
  * @author J_Hor
@@ -97,19 +99,17 @@ public class Menu extends javax.swing.JFrame {
 
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_agregarActionPerformed
 
     private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
         // TODO add your handling code here:
-        if(agregar.isSelected()){
+        if (agregar.isSelected()) {
 
-            
         }
-        
-        if(listar.isSelected()){
-         
-            
+
+        if (listar.isSelected()) {
+
         }
     }//GEN-LAST:event_aceptarActionPerformed
 

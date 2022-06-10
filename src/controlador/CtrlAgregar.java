@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -18,10 +18,12 @@ public class CtrlAgregar implements ActionListener{
     
     private AgregarCurso agregarCurso;
     private Cursomod cursoM;
+    private Controlador ctrl;
     
-    public CtrlAgregar(AgregarCurso agregarCurso,Cursomod cursoM){
+    public CtrlAgregar(AgregarCurso agregarCurso,Cursomod cursoM, Controlador ctrl){
         this.agregarCurso=agregarCurso;
         this.cursoM=cursoM;
+        this.ctrl=ctrl;
         
     }
     
@@ -30,6 +32,8 @@ public class CtrlAgregar implements ActionListener{
         agregarCurso.setDefaultCloseOperation(EXIT_ON_CLOSE);
         agregarCurso.setVisible(true);
         agregarCurso.btnAgregar.addActionListener(this);
+        agregarCurso.btnVolver.addActionListener(this);
+
         //agregarCurso.dispose();
     }
     
@@ -38,5 +42,10 @@ public class CtrlAgregar implements ActionListener{
         cursoM.setName(agregarCurso.nombre.getText());
         cursoM.setAprob(agregarCurso.aprob.getText());
         cursoM.setCod(agregarCurso.cod.getText());
+        if(e.getSource()==agregarCurso.btnVolver){
+            ctrl.setNombreCurso(agregarCurso.nombre.getText());
+            agregarCurso.dispose();
+            ctrl.setMenuVisivle();
+        }
     }
 }
