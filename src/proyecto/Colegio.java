@@ -77,10 +77,11 @@ public class Colegio {
     }
 
     //
-    public void agregarCurso(String curso1) throws IOException {
+    public void agregarCurso(/*String curso1*/) throws IOException {
 
         System.out.println("Ingrese el nombre del curso:");
-        curso = new Curso(curso1);
+        //curso = new Curso(curso1);
+        curso = new Curso(scan.readLine());
         System.out.println("Ingrese el porcentaje de aprobacion del curso(ej. 0.1):");
         curso.setPorceAprobacion(Float.parseFloat(scan.readLine()));
         System.out.println("Ingrese el codigo del curso (ej: 14):");
