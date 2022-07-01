@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  *
@@ -70,6 +71,9 @@ public class ConjuntoAlumnos implements Asistencia {
     //
     public void printSetKey() {
         System.out.println(estudiantes.keySet());
+    }
+    public Set getSetNombre() {
+        return nombreXId.keySet();
     }
     //pasa la lista de asistencia, preguntando si el estudiante está presente o no
 

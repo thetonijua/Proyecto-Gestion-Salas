@@ -10,6 +10,9 @@ import java.awt.event.ActionListener;
 import vista.Menu2;
 import vista.AgregarCurso;
 import proyecto.Colegio;
+import vista.AgregarAlumno;
+import vista.ListarCursos;
+import vista.VentanaMostrarCurso;
 
 /**
  *
@@ -19,12 +22,23 @@ public class ControladorMenu implements ActionListener {
 
     Colegio colegio;
     Menu2 menu;
+
+    //
     AgregarCurso ventanaAddCurso;
+    CtrlAgregar ctrlAddCurso;
+    //
+    AgregarAlumno ventanaAddAlumno;
+    CtrlAgregarAlumno ctrlAddAlumno;
+    //
+   ListarCursos listarCursos;
+    CtrlMostrarCursos ctrlMostrarCursos;
+    
 
     public ControladorMenu(Colegio colegio, Menu2 menu) {
         this.colegio = colegio;
         this.menu = menu;
         this.ventanaAddCurso = new AgregarCurso();
+        menu.aceptar.addActionListener(this);
         menu.botonOpcion1.addActionListener(this);
         menu.botonOpcion2.addActionListener(this);
         menu.botonOpcion3.addActionListener(this);
@@ -45,26 +59,42 @@ public class ControladorMenu implements ActionListener {
 
     }
 
+    public void setMenuVisivle() {
+        menu.setVisible(true);
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        
+        if (e.getSource() == menu.aceptar) {
+            colegio.showCursos();
 
-
+        }
         if (e.getSource() == menu.botonOpcion1) {
-            //    System.out.println("Ingrese nombre de archivo CSV (ejemplo/sugerencia prueba)");
-            // colegio.importarCursos(scan.readLine());
+            menu.setVisible(false);
+            CtrlImportar ctrlImp = new CtrlImportar(this);
+            ctrlImp.iniciar();
         }
         if (e.getSource() == menu.botonOpcion2) {
             menu.setVisible(false);
             ventanaAddCurso = new AgregarCurso();
-            ventanaAddCurso.setVisible(true);
-          
+
+            ctrlAddCurso = new CtrlAgregar(ventanaAddCurso, this);
+            ctrlAddCurso.iniciarAgregarCurso();
+
             //colegio.agregarCurso
         }
         if (e.getSource() == menu.botonOpcion3) {
+            menu.setVisible(false);
+            ventanaAddAlumno = new AgregarAlumno();
+            ctrlAddAlumno = new CtrlAgregarAlumno(ventanaAddAlumno, this);
+            ctrlAddAlumno.iniciarAgregarAlumno();
             //colegio.agregarAlumno();
         }
         if (e.getSource() == menu.botonOpcion4) {
+            menu.setVisible(false);
+            listarCursos=new ListarCursos();
+            ctrlMostrarCursos=new CtrlMostrarCursos(listarCursos,this);
+            ctrlMostrarCursos.iniciar();
             //System.out.println(colegio.keySet());
         }
         if (e.getSource() == menu.botonOpcion5) {
@@ -92,6 +122,6 @@ public class ControladorMenu implements ActionListener {
             //colegio.asisXDiaColegio();
         }
 
-
     }
+
 }

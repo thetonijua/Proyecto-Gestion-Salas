@@ -4,9 +4,7 @@
  * and open the template in the editor.
  */
 package vista;
-
 import static java.awt.SystemColor.menu;
-
 /**
  *
  * @author J_Hor
@@ -207,8 +205,6 @@ public class Menu2 extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Menu2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 

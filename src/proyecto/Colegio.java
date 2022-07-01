@@ -29,7 +29,6 @@ public class Colegio {
     int start = 0;
     Alumno estudiante;
     BufferedReader scan = new BufferedReader(new InputStreamReader(System.in));
-    
 
     public Colegio() {
         colegio = new HashMap<>();
@@ -44,9 +43,9 @@ public class Colegio {
 
     }
 
-    public void addCurso(String nombre) {
-        colegio.put(nombre, curso);
-        cursoXId.put(nombre, curso.getCodigo());
+    public void addCurso() {
+        colegio.put(curso.getNombre(), curso);
+        cursoXId.put(curso.getNombre(), curso.getCodigo());
     }
 // funcionalidades Principales
 
@@ -77,33 +76,29 @@ public class Colegio {
     }
 
     //
-    public void agregarCurso(/*String curso1*/) throws IOException {
+    public void agregarCurso(String nombre, String codigo, String aprob) throws IOException {
 
-        System.out.println("Ingrese el nombre del curso:");
-        //curso = new Curso(curso1);
-        curso = new Curso(scan.readLine());
-        System.out.println("Ingrese el porcentaje de aprobacion del curso(ej. 0.1):");
-        curso.setPorceAprobacion(Float.parseFloat(scan.readLine()));
-        System.out.println("Ingrese el codigo del curso (ej: 14):");
-        curso.setCodigo(Integer.parseInt(scan.readLine()));
+        curso = new Curso(nombre);
 
-        System.out.println("Cuantos alumnos tiene el curso:");
+        curso.setPorceAprobacion(Float.parseFloat(aprob));
+
+        curso.setCodigo(Integer.parseInt(codigo));
+
+        /*   System.out.println("Cuantos alumnos tiene el curso:");
         int fin = Integer.parseInt(scan.readLine());
         for (int i = 0; i < fin; i++) {
             System.out.println("Nombre del alumno " + (i + 1) + ":");
             curso.putAlumno(scan.readLine(), cantAlumnos);
             cantAlumnos++;
 
-        }
+        }*/
         colegio.put(curso.getNombre(), curso);
     }
-    
-    public void agregarAlumno() throws IOException {
-        System.out.println("Ingrese el nombre del curso");
-        curso = colegio.get(scan.readLine());
-        System.out.println("Nombre del alumno:");
-        xTeclado = scan.readLine();
-        curso.putAlumno(xTeclado, start);
+
+    public void agregarAlumno(String alumno, String curso) throws IOException {
+
+        this.curso = colegio.get(curso);
+        this.curso.putAlumno(alumno, start);
 
         start++;
     }
@@ -114,6 +109,10 @@ public class Colegio {
         System.out.println("Ingrese el nombre del curso:");
         curso = colegio.get(scan.readLine());
         curso.printLista();
+    }
+
+    public Set getSetNombre() {
+        return curso.getSetNombre();
     }
 
     //
@@ -195,14 +194,14 @@ public class Colegio {
     //Alumnos de todo el colegio que asistieron a una determinada fecha
     public void asisXDiaColegio() throws IOException {
         System.out.println("Ingrese fecha a revisar:");
-        String  lectura = scan.readLine();
+        String lectura = scan.readLine();
         System.out.println("\n");
         for (String name : colegio.keySet()) {
             curso = colegio.get(name);
             curso.siFueron(lectura);
         }
     }
-    
+
     public void cambiarAsist() throws IOException {
         System.out.println("Ingrese curso");
         curso = colegio.get(scan.readLine());
@@ -217,9 +216,17 @@ public class Colegio {
         String fecha = scan.readLine();
         curso.cambiarAsistencia(fecha, lectura);
     }
-    
-    public void listaCursosString(){
-        listadoCursos= colegio.keySet();
-        
+
+    public String listaCursosString() {
+        String cursos = String.join("\n", colegio.keySet());
+        return cursos;
+    }
+
+    public void showCursos() {
+        System.out.println(colegio.keySet());
+    }
+
+    public void agregarAlumno() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

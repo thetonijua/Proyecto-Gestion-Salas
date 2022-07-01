@@ -5,64 +5,17 @@
  */
 package vista;
 
-import javax.swing.*;
-import java.util.*;
-import java.io.*;
-import proyecto.Curso;
 /**
  *
  * @author J_Hor
  */
 public class AgregarCurso extends javax.swing.JFrame {
-    
-    ArrayList<Curso> cursos;
 
     /**
      * Creates new form AgregarCurso
      */
     public AgregarCurso() {
         initComponents();
-        cursos = new ArrayList<Curso>();
-        poblarLista();
-    }
-    
-    public void poblarLista() {
-        try {
-            FileInputStream file = new FileInputStream("Cursos.dat");
-            ObjectInputStream inputFile = new ObjectInputStream(file);
-            boolean endOfFile = false;
-                    
-            while (!endOfFile) {
-                try {
-                    cursos.add((Curso) inputFile.readObject());
-                } catch (EOFException e) {
-                    endOfFile = true;
-                } catch (Exception f) {
-                    JOptionPane.showMessageDialog(null, f.getMessage());
-                }
-            }
-            inputFile.close();
-            
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
-    }
-    
-    public void guardarCursosArchivo() {
-        try {
-            FileOutputStream file = new FileOutputStream("Cursos.dat");
-            ObjectOutputStream outputFile = new ObjectOutputStream(file);
-            
-            for (int i = 0; i < cursos.size() ; i++) {
-                outputFile.writeObject(cursos.get(i));
-            }
-            outputFile.close();
-            JOptionPane.showMessageDialog(null, "Guardado exitosamente");
-            this.dispose();
-            
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        }
     }
 
     /**
@@ -78,13 +31,13 @@ public class AgregarCurso extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        nombre = new javax.swing.JTextField();
-        aprob = new javax.swing.JTextField();
-        cod = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
+        txtAprob = new javax.swing.JTextField();
+        txtCodigo = new javax.swing.JTextField();
         btnAgregar = new javax.swing.JButton();
         btnVolver = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jLabel1.setText("Agregar Curso");
@@ -97,9 +50,9 @@ public class AgregarCurso extends javax.swing.JFrame {
 
         jLabel4.setText("Código curso");
 
-        nombre.addActionListener(new java.awt.event.ActionListener() {
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nombreActionPerformed(evt);
+                txtNombreActionPerformed(evt);
             }
         });
 
@@ -110,7 +63,7 @@ public class AgregarCurso extends javax.swing.JFrame {
             }
         });
 
-        btnVolver.setText("volver");
+        btnVolver.setText("Volver");
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnVolverActionPerformed(evt);
@@ -122,25 +75,24 @@ public class AgregarCurso extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(63, 63, 63)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1)
-                            .addComponent(nombre, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
-                            .addComponent(aprob)
-                            .addComponent(cod))
-                        .addGap(18, 18, 18)
-                        .addComponent(btnAgregar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(161, 161, 161)
-                        .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel4))
+                .addGap(63, 63, 63)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                    .addComponent(txtAprob)
+                    .addComponent(txtCodigo))
+                .addGap(18, 18, 18)
+                .addComponent(btnAgregar)
                 .addContainerGap(14, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnVolver)
+                .addGap(144, 144, 144))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,44 +102,32 @@ public class AgregarCurso extends javax.swing.JFrame {
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(aprob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAprob, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAgregar))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(cod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addComponent(btnVolver)
-                .addGap(31, 31, 31))
+                .addGap(38, 38, 38))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreActionPerformed
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nombreActionPerformed
+    }//GEN-LAST:event_txtNombreActionPerformed
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
+           
         
-        if (nombre.getText().isEmpty() || aprob.getText().isEmpty() || cod.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Rellene toda la información");
-        } else {
-            String name = nombre.getText().trim();
-            String percent = aprob.getText().trim();
-            String clave = cod.getText().trim();
-            
-            Curso curso = new Curso(name, Float.parseFloat(percent), Integer.parseInt(clave));
-            
-            cursos.add(curso);
-            
-            guardarCursosArchivo();
-        }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
@@ -230,15 +170,15 @@ public class AgregarCurso extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JTextField aprob;
     public javax.swing.JButton btnAgregar;
     public javax.swing.JButton btnVolver;
-    public javax.swing.JTextField cod;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    public javax.swing.JTextField nombre;
+    public javax.swing.JTextField txtAprob;
+    public javax.swing.JTextField txtCodigo;
+    public javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 
 }

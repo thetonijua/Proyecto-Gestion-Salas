@@ -100,7 +100,9 @@ public class Curso {
     public void printSetKey() {
         alumnos.printSetKey();
     }
-
+    public Set getSetNombre() {
+        return alumnos.getSetNombre();
+    }
     //pasa la lista de asistencia, preguntando si el estudiante está presente o no
     public void tomarAsistencia(String fecha) throws IOException {
         alumnos.tomarAsistencia(fecha);

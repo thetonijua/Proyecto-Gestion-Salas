@@ -5,10 +5,10 @@
  */
 package proyecto;
 
+import controlador.ControladorMenu;
 import java.io.*;
 import java.util.*;
-import controlador.Controlador;
-import vista.Menu;
+import vista.Menu2;
 
 /**
  *
@@ -22,14 +22,15 @@ public class Proyecto {
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
         Colegio colegio = new Colegio();
-        Menu menu= new Menu();
-        Controlador controlador= new Controlador(menu);
-        controlador.iniciarmenu();
+        Menu2 menu= new Menu2();
+        ControladorMenu ctrlMenu=new ControladorMenu(colegio, menu);
+        ctrlMenu.desplegar();
+        menu.setVisible(true);
         int selectMenu;
 
         BufferedReader scan = new BufferedReader(new InputStreamReader(System.in));
 
-        do {
+       do {
             menu();
             selectMenu = Integer.parseInt(scan.readLine());
             cls();
@@ -41,7 +42,7 @@ public class Proyecto {
                     break;
 
                 case 2: //Agregar curso
-                    colegio.agregarCurso();
+                    
                     break;
                     
                 case 3: //Añade un alumno nuevo al curso
