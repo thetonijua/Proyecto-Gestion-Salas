@@ -98,9 +98,9 @@ public class Colegio {
     public void agregarAlumno(String alumno, String curso) throws IOException {
 
         this.curso = colegio.get(curso);
-        this.curso.putAlumno(alumno, start);
+        this.curso.putAlumno(alumno, cantAlumnos);
 
-        start++;
+        cantAlumnos++;
     }
 
     //
