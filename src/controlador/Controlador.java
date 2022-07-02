@@ -29,6 +29,7 @@ public class Controlador implements ActionListener{
     private String nombreAlumno;
     private String porceAprob;
     private String fecha;
+    private ControladorMenu ctrlMenu;
     
     
     public Controlador(Menu menu, Colegio colegio){
@@ -36,7 +37,7 @@ public class Controlador implements ActionListener{
         this.menu=menu;
         agregarCurso= new AgregarCurso();
         cursoM= new Cursomod();
-        ctrlAgregar= new CtrlAgregar(agregarCurso,cursoM, this);
+        ctrlAgregar= new CtrlAgregar(agregarCurso, ctrlMenu);
     }
     
     public void iniciarmenu(){
