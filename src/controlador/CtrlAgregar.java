@@ -7,9 +7,6 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import vista.AgregarCurso;
 

@@ -12,7 +12,6 @@ import vista.AgregarCurso;
 import proyecto.Colegio;
 import vista.AgregarAlumno;
 import vista.ListarCursos;
-import vista.VentanaMostrarCurso;
 
 /**
  *
@@ -30,9 +29,8 @@ public class ControladorMenu implements ActionListener {
     AgregarAlumno ventanaAddAlumno;
     CtrlAgregarAlumno ctrlAddAlumno;
     //
-   ListarCursos listarCursos;
+    ListarCursos listarCursos;
     CtrlMostrarCursos ctrlMostrarCursos;
-    
 
     public ControladorMenu(Colegio colegio, Menu2 menu) {
         this.colegio = colegio;
@@ -92,8 +90,8 @@ public class ControladorMenu implements ActionListener {
         }
         if (e.getSource() == menu.botonOpcion4) {
             menu.setVisible(false);
-            listarCursos=new ListarCursos();
-            ctrlMostrarCursos=new CtrlMostrarCursos(listarCursos,this);
+            listarCursos = new ListarCursos();
+            ctrlMostrarCursos = new CtrlMostrarCursos(listarCursos, this);
             ctrlMostrarCursos.iniciar();
             //System.out.println(colegio.keySet());
         }
