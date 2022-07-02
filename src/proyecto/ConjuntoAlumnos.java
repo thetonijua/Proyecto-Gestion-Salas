@@ -141,7 +141,7 @@ public class ConjuntoAlumnos implements Asistencia {
 
                 if (id == listaEstu.get(i)) {
                     listaEstu.remove(i);
-                    nombreXId.remove(estudiantes.get(id).getNombre());
+                    nombreXId.remove(name);
                     estudiantes.remove(id);
                 }
 
