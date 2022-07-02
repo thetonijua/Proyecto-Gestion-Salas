@@ -47,7 +47,9 @@ public class CtrlAgregar implements ActionListener {
             if (agregarCurso.txtNombre.getText() != null) {
                 ctrl.colegio.defineCurso(agregarCurso.txtNombre.getText(), agregarCurso.txtCodigo.getText(),agregarCurso.txtAprob.getText());
                 ctrl.colegio.addCurso();
+                ctrl.setMenuVisivle();
                 agregarCurso.dispose();
+                
                 
             }
         }

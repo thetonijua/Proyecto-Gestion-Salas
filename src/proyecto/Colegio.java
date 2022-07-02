@@ -225,8 +225,8 @@ public class Colegio {
     public void showCursos() {
         System.out.println(colegio.keySet());
     }
-
+/*
     public void agregarAlumno() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    }*/
 }

@@ -46,7 +46,11 @@ public class Proyecto {
                     break;
                     
                 case 3: //Añade un alumno nuevo al curso
-                    colegio.agregarAlumno();
+                    System.out.println("ingrese Curso");
+                    String cursoAux=scan.readLine();
+                    System.out.println("Ingrese nombre");
+                    String AlumnoAux=scan.readLine();
+                    colegio.agregarAlumno(AlumnoAux,cursoAux);
                     break;
 
                 case 4: //Mostrar lista de cursos
