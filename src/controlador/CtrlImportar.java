@@ -53,7 +53,7 @@ public class CtrlImportar  implements ActionListener {
                 } catch (IOException ex) {
                     Logger.getLogger(CtrlImportar.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (IdAlumnoRepetidaException ex){
-                    Logger.getLogger(CtrlAgregarAlumno.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(CtrlImportar.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
