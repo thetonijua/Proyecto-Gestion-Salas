@@ -22,6 +22,11 @@ public class Proyecto {
      */
     public static void main(String[] args) throws FileNotFoundException, IOException {
         Colegio colegio = new Colegio();
+        Usuario usuario= new Usuario();
+        DatosStrategy fb= new FormatoBreve();
+        DatosStrategy fe= new FormatoExtenso();
+        usuario.dt=fb;
+        String aux;
         Menu2 menu= new Menu2();
         ControladorMenu ctrlMenu=new ControladorMenu(colegio, menu);
         ctrlMenu.desplegar();
@@ -92,6 +97,19 @@ public class Proyecto {
                 case 13: //Cambiar la asistencia de un alumno de una determinada fecha
                     colegio.cambiarAsist();
                     break;
+                    
+                case 14://Datos de alumnos vista 
+                    System.out.println("\nIngrese tipo de usuario (docente/alumno):\n");
+                    aux=scan.readLine();
+                    if(aux.equals("docente")){
+                        usuario.dt=fe;
+                    }
+                    if(aux.equals("alumno")){
+                        usuario.dt=fb;
+                    }
+                   
+                    usuario.mostrarDatos(colegio);
+                    break;
 
                 default: //salir
                     selectMenu = 0;
@@ -117,6 +135,7 @@ public class Proyecto {
         System.out.println("11.- Mostrar asistencia en una fecha");
         System.out.println("12.- Mostrar alumnos del colegio que asistieron en una fecha determinada");
         System.out.println("13.- Cambiar asistencia de un alumno");
+        System.out.println("14.- Datos Curso/Alumno vista Usuario(Alumno/Profesor)");
         System.out.println("0.- Salir");
 
     }

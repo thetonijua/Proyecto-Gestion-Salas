@@ -81,6 +81,7 @@ public class Curso {
     public Alumno getAlumno(String txt) {
         return alumnos.getAlumno(txt);
     }
+    
 
     //métodos de la clase
     /*dos métodos para añadir el alumno a la lista

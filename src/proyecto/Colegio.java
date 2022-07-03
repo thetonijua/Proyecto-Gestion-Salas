@@ -23,12 +23,15 @@ public class Colegio {
     Map<String, Curso> colegio;
     Map<String, Integer> cursoXId;
     public Set<String> listadoCursos;
+    
     int cantAlumnos;
     Curso curso;
     String xTeclado;
     int start = 0;
     Alumno estudiante;
     BufferedReader scan = new BufferedReader(new InputStreamReader(System.in));
+    
+    
 
     public Colegio() {
         colegio = new HashMap<>();
@@ -126,6 +129,38 @@ public class Colegio {
         }
         curso.getAlumno(lectura).printAsistencia();
 
+    }
+    
+    public void infoAlumno() throws IOException {
+        System.out.println("Ingrese el nombre de su curso:");
+        curso = colegio.get(scan.readLine());
+        System.out.println("Ingrese su nombre o id: \n");
+        String lectura = scan.readLine();
+        if (esNumero(lectura)) {
+            curso.getAlumno(Integer.parseInt(lectura)).printAsistencia();
+        }
+        
+        System.out.println("Total dias asistidos: "+curso.getAlumno(lectura).getTotAsistencia()+". Dias en que asistió:\n");
+        curso.getAlumno(lectura).printAsistencia();
+        System.out.println("\n");
+
+    }
+    
+    public boolean infoAlumnoE() throws IOException {
+        System.out.println("Ingrese el nombre del curso:");
+        curso = colegio.get(scan.readLine());
+        System.out.println("Ingrese nombre de alumno si desea saber su asistencia, en caso contrario presionar enter\n");
+       
+        String lectura = scan.readLine();
+        if(lectura.equals("")) return false;
+        if (esNumero(lectura)) {
+            curso.getAlumno(Integer.parseInt(lectura)).printAsistencia();
+        }
+        
+        System.out.println("Total dias asistidos: "+curso.getAlumno(lectura).getTotAsistencia()+". Dias en que asistió:\n");
+        curso.getAlumno(lectura).printAsistencia();
+        System.out.println("\n");
+        return true;
     }
 
     //
@@ -229,4 +264,8 @@ public class Colegio {
     public void agregarAlumno() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }*/
+
+    Curso get(String readLine) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

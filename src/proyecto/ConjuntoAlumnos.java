@@ -51,6 +51,15 @@ public class ConjuntoAlumnos implements Asistencia {
         }
         return estudiantes.get(num);
     }
+        public void getAlumnoInf(String txt) {
+        int num = nombreXId.get(txt);
+
+        if (!estudiantes.containsKey(num)) {
+            System.out.println("No se encontro ");
+
+        }
+        estudiantes.get(num).getTotAsistencia();
+    }
 
 //
     public void putAlumno(String name, int id) {
