@@ -30,30 +30,13 @@ public class Menu2 extends javax.swing.JFrame {
 
         grupoMenu = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
-        aceptar = new javax.swing.JButton();
         botonOpcion1 = new javax.swing.JRadioButton();
         botonOpcion2 = new javax.swing.JRadioButton();
-        botonOpcion3 = new javax.swing.JRadioButton();
         botonOpcion4 = new javax.swing.JRadioButton();
-        botonOpcion8 = new javax.swing.JRadioButton();
-        botonOpcion5 = new javax.swing.JRadioButton();
-        botonOpcion6 = new javax.swing.JRadioButton();
-        botonOpcion7 = new javax.swing.JRadioButton();
-        botonOpcion12 = new javax.swing.JRadioButton();
-        botonOpcion9 = new javax.swing.JRadioButton();
-        botonOpcion10 = new javax.swing.JRadioButton();
-        botonOpcion11 = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Menú");
-
-        aceptar.setText("Aceptar");
-        aceptar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                aceptarActionPerformed(evt);
-            }
-        });
 
         grupoMenu.add(botonOpcion1);
         botonOpcion1.setText("Importar Archivo CSV");
@@ -62,123 +45,41 @@ public class Menu2 extends javax.swing.JFrame {
         grupoMenu.add(botonOpcion2);
         botonOpcion2.setText("Agregar curso ");
 
-        grupoMenu.add(botonOpcion3);
-        botonOpcion3.setText("Agregar Alumno");
-
         grupoMenu.add(botonOpcion4);
         botonOpcion4.setText("Mostrar cursos");
-
-        grupoMenu.add(botonOpcion8);
-        botonOpcion8.setText("Eliminar alumno");
-
-        grupoMenu.add(botonOpcion5);
-        botonOpcion5.setText("Mostrar alumnos");
-
-        grupoMenu.add(botonOpcion6);
-        botonOpcion6.setText("Mostrar dias");
-
-        grupoMenu.add(botonOpcion7);
-        botonOpcion7.setText("Pasar lista");
-        botonOpcion7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonOpcion7ActionPerformed(evt);
-            }
-        });
-
-        grupoMenu.add(botonOpcion12);
-        botonOpcion12.setText("Mostrar alumnos presente");
-
-        grupoMenu.add(botonOpcion9);
-        botonOpcion9.setText("Eliminar dia");
-
-        grupoMenu.add(botonOpcion10);
-        botonOpcion10.setText("Crear reporte");
-
-        grupoMenu.add(botonOpcion11);
-        botonOpcion11.setText("Mostrar asistencia");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(160, 160, 160)
-                .addComponent(aceptar)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(165, 165, 165)
+                .addComponent(jLabel1)
+                .addContainerGap(229, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(165, 165, 165)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonOpcion2)
-                            .addComponent(botonOpcion1)
-                            .addComponent(botonOpcion3)
-                            .addComponent(botonOpcion4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonOpcion6)
-                            .addComponent(botonOpcion5)
-                            .addComponent(botonOpcion7)
-                            .addComponent(botonOpcion8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botonOpcion10)
-                            .addComponent(botonOpcion9)
-                            .addComponent(botonOpcion11)
-                            .addComponent(botonOpcion12))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(botonOpcion1)
+                .addGap(13, 13, 13)
+                .addComponent(botonOpcion2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonOpcion4)
+                .addGap(33, 33, 33))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(botonOpcion1)
-                            .addGap(18, 18, 18)
-                            .addComponent(botonOpcion2)
-                            .addGap(18, 18, 18)
-                            .addComponent(botonOpcion3)
-                            .addGap(18, 18, 18)
-                            .addComponent(botonOpcion4))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(botonOpcion5)
-                            .addGap(18, 18, 18)
-                            .addComponent(botonOpcion6)
-                            .addGap(18, 18, 18)
-                            .addComponent(botonOpcion7)
-                            .addGap(18, 18, 18)
-                            .addComponent(botonOpcion8)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(botonOpcion9)
-                        .addGap(18, 18, 18)
-                        .addComponent(botonOpcion10)
-                        .addGap(18, 18, 18)
-                        .addComponent(botonOpcion11)
-                        .addGap(18, 18, 18)
-                        .addComponent(botonOpcion12)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                .addComponent(aceptar)
-                .addGap(32, 32, 32))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonOpcion2)
+                    .addComponent(botonOpcion4)
+                    .addComponent(botonOpcion1))
+                .addGap(146, 146, 146))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_aceptarActionPerformed
-
-    private void botonOpcion7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOpcion7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonOpcion7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,19 +118,9 @@ public class Menu2 extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton aceptar;
     public javax.swing.JRadioButton botonOpcion1;
-    public javax.swing.JRadioButton botonOpcion10;
-    public javax.swing.JRadioButton botonOpcion11;
-    public javax.swing.JRadioButton botonOpcion12;
     public javax.swing.JRadioButton botonOpcion2;
-    public javax.swing.JRadioButton botonOpcion3;
     public javax.swing.JRadioButton botonOpcion4;
-    public javax.swing.JRadioButton botonOpcion5;
-    public javax.swing.JRadioButton botonOpcion6;
-    public javax.swing.JRadioButton botonOpcion7;
-    public javax.swing.JRadioButton botonOpcion8;
-    public javax.swing.JRadioButton botonOpcion9;
     private javax.swing.ButtonGroup grupoMenu;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
